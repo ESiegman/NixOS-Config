@@ -56,29 +56,22 @@
       function nix-switch {
         local config_dir="$HOME/NixOS-Config"
         local system_config_path="/etc/nixos/configuration.nix"
-        
+
         if [ ! -d "$config_dir" ]; then
             echo "Error: Configuration directory '$config_dir' not found."
             return 1
         fi
-        
-        cd "$config_dir" || return 1
-        if ! git diff --quiet HEAD; then
-            echo "Error: You have uncommitted changes in $config_dir."
-            echo "Please commit or stash them before switching."
-            return 1
-        fi
-        
+
         if [ ! -L "$system_config_path" ] || [ "$(readlink "$system_config_path")" != "$config_dir/configuration.nix" ]; then
             echo "Linking configuration.nix to $config_dir/configuration.nix"
             sudo ln -sf "$config_dir/configuration.nix" "$system_config_path"
         fi
-        
+
         echo "Starting NixOS rebuild and switch..."
-        sudo nixos-rebuild switch --flake "$config_dir#$USER"
-        
+        sudo nixos-rebuild switch --flake "$config_dir#desktop"
+
         local status=$?
-        
+
         if [ $status -eq 0 ]; then
             echo "NixOS switch successful."
             git add .
@@ -88,7 +81,7 @@
         else
             echo "NixOS switch FAILED. No changes were committed or pushed."
         fi
-        
+
         return $status
       }
 
