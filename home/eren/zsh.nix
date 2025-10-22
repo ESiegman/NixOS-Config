@@ -62,6 +62,8 @@
           return 1
         fi
 
+        cd "$config_dir"
+
         if ! git diff --quiet HEAD; then
           echo "Found uncommitted changes. Creating auto-commit..."
           git add .
