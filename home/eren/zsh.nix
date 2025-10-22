@@ -58,14 +58,22 @@
         local system_config_path="/etc/nixos/configuration.nix"
 
         if [ ! -d "$config_dir" ]; then
-            echo "Error: Configuration directory '$config_dir' not found."
-            return 1
+          echo "Error: Configuration directory '$config_dir' not found."
+          return 1
+        fi
+
+        if ! git diff --quiet HEAD; then
+          echo "Found uncommitted changes. Creating auto-commit..."
+          git add .
+          git commit -m "AUTO-COMMIT: Pre-switch state before Nix rebuild on $(date +%F %T)"
         fi
 
         if [ ! -L "$system_config_path" ] || [ "$(readlink "$system_config_path")" != "$config_dir/configuration.nix" ]; then
-            echo "Linking configuration.nix to $config_dir/configuration.nix"
-            sudo ln -sf "$config_dir/configuration.nix" "$system_config_path"
+          echo "Linking configuration.nix to $config_dir/configuration.nix"
+          sudo ln -sf "$config_dir/configuration.nix" "$system_config_path"
         fi
+
+        sudo chown -R "$user":users $config_dir
 
         echo "Starting NixOS rebuild and switch..."
         sudo nixos-rebuild switch --flake "$config_dir#desktop"
@@ -73,13 +81,13 @@
         local status=$?
 
         if [ $status -eq 0 ]; then
-            echo "NixOS switch successful."
-            git add .
-            git commit -m "System rebuild successful (Automated switch on $(date +%F %T))"
-            git push
-            echo "Changes pushed to GitHub."
+          echo "NixOS switch successful."
+          git add .
+          git commit --amend --no-edit
+          git push
+          echo "Changes pushed to GitHub."
         else
-            echo "NixOS switch FAILED. No changes were committed or pushed."
+          echo "NixOS switch FAILED. No changes were committed or pushed."
         fi
 
         return $status
