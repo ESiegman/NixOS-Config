@@ -65,7 +65,7 @@
         if ! git diff --quiet HEAD; then
           echo "Found uncommitted changes. Creating auto-commit..."
           git add .
-          git commit -m "AUTO-COMMIT: Pre-switch state before Nix rebuild on $(date +%F %T)"
+          git commit -m "AUTO-COMMIT: Pre-switch state before Nix rebuild on $(date +%F %H:%M:%S)"
         fi
 
         sudo chown -R "$user":users $config_dir
@@ -73,9 +73,9 @@
         echo "Starting NixOS rebuild and switch..."
         sudo nixos-rebuild switch --flake "$config_dir#desktop"
 
-        local status=$?
+        local exit_code=$?
 
-        if [ $status -eq 0 ]; then
+        if [ $exit_code -eq 0 ]; then
           echo "NixOS switch successful."
           git add .
           git commit --amend --no-edit
@@ -85,7 +85,7 @@
           echo "NixOS switch FAILED. No changes were committed or pushed."
         fi
 
-        return $status
+        return $exit_code
       }
 
       fastfetch --logo "$config_dir"/images/fastfetch.png --logo-height 25
