@@ -62,7 +62,7 @@
       ];
     };
     enableRedistributableFirmware = true;
-    
+
     bluetooth = {
       enable = true;
       package = pkgs.bluez;

@@ -84,13 +84,13 @@
           inputs.stylix.nixosModules.stylix
           inputs.sddm-sugar-candy-nix.nixosModules.default
           inputs.spicetify-nix.nixosModules.spicetify
-         {
+          {
             home-manager.backupFileExtension = "bak";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = specArgs;
             home-manager.users.eren = ./home/eren/default.nix;
-         }
+          }
         ];
       };
     };

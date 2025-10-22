@@ -42,6 +42,8 @@
       bindkey "^[[A" history-substring-search-up
       bindkey "^[[B" history-substring-search-down
 
+      local config_dir="$HOME/NixOS-Config"
+
       function virt_env {
         if [[ -n "$VIRTUAL_ENV" ]]; then
           deactivate
@@ -54,8 +56,6 @@
       }
 
       function nix-switch {
-        local config_dir="$HOME/NixOS-Config"
-        local system_config_path="/etc/nixos/configuration.nix"
 
         if [ ! -d "$config_dir" ]; then
           echo "Error: Configuration directory '$config_dir' not found."
@@ -66,11 +66,6 @@
           echo "Found uncommitted changes. Creating auto-commit..."
           git add .
           git commit -m "AUTO-COMMIT: Pre-switch state before Nix rebuild on $(date +%F %T)"
-        fi
-
-        if [ ! -L "$system_config_path" ] || [ "$(readlink "$system_config_path")" != "$config_dir/configuration.nix" ]; then
-          echo "Linking configuration.nix to $config_dir/configuration.nix"
-          sudo ln -sf "$config_dir/configuration.nix" "$system_config_path"
         fi
 
         sudo chown -R "$user":users $config_dir
@@ -93,7 +88,7 @@
         return $status
       }
 
-      fastfetch --logo /etc/nixos/images/fastfetch.png --logo-height 25
+      fastfetch --logo "$config_dir"/images/fastfetch.png --logo-height 25
     '';
   };
 }
