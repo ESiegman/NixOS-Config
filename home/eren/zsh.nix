@@ -19,7 +19,6 @@
       ll = "ls -l";
       zed = "zeditor";
 
-      buildsys = "sudo nixos-rebuild switch --flake .#desktop";
       fastfetch = "fastfetch --logo /etc/nixos/images/fastfetch.png --logo-height 21";
     };
 
@@ -82,7 +81,7 @@
           echo "NixOS switch successful."
           git add .
           git commit --amend --no-edit
-          git push
+          git push --force
           echo "Changes pushed to GitHub."
         else
           echo "NixOS switch FAILED. No changes were committed or pushed."
