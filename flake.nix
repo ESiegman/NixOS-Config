@@ -42,7 +42,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    inputs.nix-shell-gen.url = "github:esiegman/nix-shell-gen";
+    nix-shell-gen.url = "github:esiegman/nix-shell-gen";
   };
 
   outputs =
