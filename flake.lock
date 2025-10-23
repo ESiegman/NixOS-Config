@@ -599,11 +599,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1761192182,
-        "narHash": "sha256-XN7UGSptFOKuiWEb6ZY7ec3ys8iycoGCPpFannJDFZk=",
+        "lastModified": 1761193261,
+        "narHash": "sha256-Hsy8MVMHIRW+ZEQF7b/bYIO+1aiCugBr5UkjxwdjMlQ=",
         "owner": "esiegman",
         "repo": "nix-shell-gen",
-        "rev": "ac07a724adcab29bc326e71f2bf7b5a2f1510d20",
+        "rev": "cecdc7029ecb80e2d620febf7a794eebcfdd4ac2",
         "type": "github"
       },
       "original": {
