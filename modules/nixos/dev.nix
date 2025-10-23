@@ -55,6 +55,7 @@ let
     gnumake
     screen
     usbutils
+    doxygen
 
     (inputs.nix-shell-gen.packages.${pkgs.system}.default)
   ];
