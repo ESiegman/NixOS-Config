@@ -596,15 +596,14 @@
       "inputs": {
         "crane": "crane",
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs",
-        "rust-overlay": "rust-overlay"
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1761191448,
-        "narHash": "sha256-HSmdfp2XONRyfp41gEWRIXZ4sS8xZFMsAN/T1OmizAY=",
+        "lastModified": 1761192182,
+        "narHash": "sha256-XN7UGSptFOKuiWEb6ZY7ec3ys8iycoGCPpFannJDFZk=",
         "owner": "esiegman",
         "repo": "nix-shell-gen",
-        "rev": "24f079a60499701b29540d2867669115d84db225",
+        "rev": "ac07a724adcab29bc326e71f2bf7b5a2f1510d20",
         "type": "github"
       },
       "original": {
@@ -763,27 +762,6 @@
         "sddm-sugar-candy-nix": "sddm-sugar-candy-nix",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix"
-      }
-    },
-    "rust-overlay": {
-      "inputs": {
-        "nixpkgs": [
-          "nix-shell-gen",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1761186948,
-        "narHash": "sha256-mylLEdzqx4M9TrwFIPc+o0dqabHvFGbNJZGRgE43Ya0=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "1d1c8a009adeb4c0561bb1feea8ec7b97749946b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
       }
     },
     "sddm-sugar-candy-nix": {
