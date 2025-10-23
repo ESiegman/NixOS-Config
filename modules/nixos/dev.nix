@@ -1,5 +1,5 @@
 # modules/nixos/dev.nix
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   languageToolchains = with pkgs; [
     # C / C++
