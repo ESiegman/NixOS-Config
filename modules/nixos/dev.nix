@@ -55,6 +55,8 @@ let
     gnumake
     screen
     usbutils
+
+    (inputs.nix-shell-gen.packages.${pkgs.system}.default)
   ];
 
 in

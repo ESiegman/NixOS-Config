@@ -65,7 +65,7 @@
 
         if ! git diff --quiet HEAD; then
           echo "Found uncommitted changes. Creating auto-commit..."
-          local timestamp=$(date +%Y-%m-%d-%H-%M-%S)
+          local timestamp=$(date +%Y-%m-%d %H-%M-%S)
           git add .
           git commit -m "AUTO-COMMIT: Pre-switch state before Nix rebuild on $timestamp"
         fi

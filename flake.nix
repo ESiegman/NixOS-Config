@@ -41,6 +41,8 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    inputs.nix-shell-gen.url = "github:esiegman/nix-shell-gen";
   };
 
   outputs =
