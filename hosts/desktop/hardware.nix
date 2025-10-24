@@ -46,7 +46,7 @@
 
   environment.systemPackages = with pkgs; [
     vulkan-tools
-    nm-applet
+    network-manager-applet
   ];
 
   systemd.services.systemd-modules-load.enable = true;
