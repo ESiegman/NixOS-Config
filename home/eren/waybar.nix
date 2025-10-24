@@ -197,8 +197,8 @@ in
       }
 
       #tray:hover,
-      #bluetooth,
-      #network,
+      #bluetooth:hover,
+      #network:hover,
       #custom-launcher:hover,
       #custom-power:hover,
       #custom-swaync:hover {
