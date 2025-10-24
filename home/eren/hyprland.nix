@@ -17,7 +17,7 @@ in
     systemd.enable = true;
   };
   wayland.windowManager.hyprland.settings = {
-    
+
     monitor = ",highrr,auto,1";
     env = [ "XCURSOR_SIZE,24" ];
 
@@ -25,6 +25,7 @@ in
       "waybar"
       "swww-daemon"
       "swww img ${wallpaper}"
+      "nm-applet"
     ];
 
     general = {
@@ -51,8 +52,8 @@ in
       };
 
       shadow = {
-	enabled = true;
-      	range = 8;
+        enabled = true;
+        range = 8;
         render_power = 3;
         color = "rgba(00000066)";
       };
@@ -98,17 +99,20 @@ in
       "${mod} SHIFT, B, exec, chromium"
       "${mod}, M, exec, spotify"
       "${mod}, D, exec, vesktop"
-    ] ++ (
-        builtins.concatLists (builtins.genList (i:
-            let ws = i + 1;
-            in [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          )
-          9)
-	);
-    
+    ]
+    ++ (builtins.concatLists (
+      builtins.genList (
+        i:
+        let
+          ws = i + 1;
+        in
+        [
+          "$mod, code:1${toString i}, workspace, ${toString ws}"
+          "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+        ]
+      ) 9
+    ));
+
     bindm = [
       "${mod}, mouse:272, movewindow"
       "${mod}, mouse:273, resizewindow"

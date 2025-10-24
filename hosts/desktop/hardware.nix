@@ -46,6 +46,7 @@
 
   environment.systemPackages = with pkgs; [
     vulkan-tools
+    networkmanageddrapplet
   ];
 
   systemd.services.systemd-modules-load.enable = true;
