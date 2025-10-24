@@ -99,10 +99,7 @@ in
         "network" = {
           format-wifi = "{essid} {percent}% ";
           format-ethernet = "Connected  ";
-          tooltip-format = "{ifname} via {gwaddr}";
-          format-linked = "{ifname} (No IP)";
           format-disconnected = "Disconnected";
-          format-alt = "{ifname}: {ipaddr}/{cidr}";
           on-click = "nm-applet";
         };
         "cpu" = {
