@@ -23,10 +23,16 @@ in
         spacing = 6;
         height = 32;
 
-        "modules-left" = [ "custom/launcher" "hyprland/workspaces" ];
+        "modules-left" = [
+          "custom/launcher"
+          "hyprland/workspaces"
+        ];
         "modules-center" = [ "hyprland/window" ];
         "modules-right" = [
           "custom/swaync"
+          "pulseaudio"
+          "bluetooth"
+          "network"
           "cpu"
           "memory"
           "clock"
@@ -68,7 +74,37 @@ in
           exec = "swaync-client -c";
           exec-if = "which swaync-client";
         };
-
+        "pulseaudio" = {
+          format = "{icon} {volume}%";
+          format-muted = "";
+          format-icons = {
+            headphone = "";
+            default = [
+              ""
+              ""
+              "󰕾"
+              "󰕾"
+              "󰕾"
+              ""
+              ""
+              ""
+            ];
+          };
+        };
+        "bluetooth" = {
+          format = " {}";
+          format-disabled = "";
+          on-click = "blueman-manager";
+        };
+        "network" = {
+          format-wifi = "{essid} {percent}% ";
+          format-ethernet = "Connected  ";
+          tooltip-format = "{ifname} via {gwaddr}";
+          format-linked = "{ifname} (No IP)";
+          format-disconnected = "Disconnected";
+          format-alt = "{ifname}: {ipaddr}/{cidr}";
+          on-click = "nm-applet";
+        };
         "cpu" = {
           format = " {usage}%";
           tooltip-format = "CPU: {usage}% @ {avg_frequency}GHz";
@@ -101,7 +137,9 @@ in
 
     style = ''
       * {
-        font-family: ${config.stylix.fonts.monospace.name or config.stylix.fonts.monospace or "monospace"};
+        font-family: ${
+          config.stylix.fonts.monospace.name or config.stylix.fonts.monospace or "monospace"
+        };
         font-size: 12px;
         min-height: 0;
       }
@@ -109,13 +147,13 @@ in
       #waybar {
         border: 2px solid ${toHex palette.base02};
         border-radius: 12px;
-        background-color: alpha(${toHex palette.base00}, 0.8); 
-        margin: 8px 12px; 
+        background-color: alpha(${toHex palette.base00}, 0.8);
+        margin: 8px 12px;
         padding: 0 20px;
       }
 
       #custom-launcher {
-        padding: 0 4px; 
+        padding: 0 4px;
         margin-left: 12px;
         margin-right: 8px;
       }
@@ -132,18 +170,18 @@ in
       }
 
       #workspaces button.active {
-        background-color: alpha(${toHex palette.base0D}, 0.2); 
+        background-color: alpha(${toHex palette.base0D}, 0.2);
         color: ${toHex palette.base0D};
       }
-      
+
       #modules-left,
       #modules-right {
-        padding: 0 0px; 
+        padding: 0 0px;
       }
 
       #custom-power {
         margin-right: 16px;
-        margin: 0 4px; 
+        margin: 0 4px;
         padding: 4px 8px;
       }
 
@@ -151,6 +189,9 @@ in
       #clock,
       #memory,
       #cpu,
+      #pulseaudio,
+      #bluetooth,
+      #network,
       #custom-swaync {
         margin: 0 4px;
         padding: 4px 8px;
@@ -159,6 +200,8 @@ in
       }
 
       #tray:hover,
+      #bluetooth,
+      #network,
       #custom-launcher:hover,
       #custom-power:hover,
       #custom-swaync:hover {
