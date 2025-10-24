@@ -4,6 +4,7 @@
   networking = {
     hostName = "nixos-desktop";
     networkmanager.enable = true;
+    networkmanager.applet.enable = true;
     firewall = {
       enable = true;
       #  allowedTCPPorts = [ 22 80 443 ];
