@@ -56,6 +56,7 @@ let
     screen
     usbutils
     doxygen
+    arduino-cli
 
     (inputs.nix-shell-gen.packages.${pkgs.system}.default)
   ];

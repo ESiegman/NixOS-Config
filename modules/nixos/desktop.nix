@@ -42,6 +42,11 @@ in
       # settings.KbdInteractiveAuthentication = false;
     };
     playerctld.enable = true;
+    udev.extraRules = ''
+      # Arduino Nano ESP32
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2341", ATTR{idProduct}=="0070", MODE="0666", GROUP="dialout"
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2341", ATTR{idProduct}=="0071", MODE="0666", GROUP="dialout"
+    '';
   };
 
   programs = {
@@ -74,13 +79,13 @@ in
         ];
       };
     };
- #   mimeApps.defaultApplications = {
- #     "text/plain" = "nvim.desktop";
- #     "application/pdf" = "zathura.desktop";
- #     "image/*" = "gThumb.desktop";
- #     "video/*" = "mpv.desktop";
- #     "audio/*" = "mpv.desktop";
- #   };
+    #   mimeApps.defaultApplications = {
+    #     "text/plain" = "nvim.desktop";
+    #     "application/pdf" = "zathura.desktop";
+    #     "image/*" = "gThumb.desktop";
+    #     "video/*" = "mpv.desktop";
+    #     "audio/*" = "mpv.desktop";
+    #   };
   };
 
   environment = {
