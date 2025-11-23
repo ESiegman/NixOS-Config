@@ -56,25 +56,26 @@ let
     screen
     usbutils
     doxygen
+    tree-sitter
     arduino-cli
 
     (inputs.nix-shell-gen.packages.${pkgs.system}.default)
   ];
 
-in
-{
-  environment.systemPackages = languageToolchains ++ formattersAndLinters ++ generalDevUtils;
+in {
+  environment.systemPackages = languageToolchains ++ formattersAndLinters
+    ++ generalDevUtils;
 
   programs.nix-ld.enable = true;
 
-programs.nix-ld.libraries = with pkgs; [
-  stdenv.cc.cc
-  zlib
-  fuse3
-  icu
-  nss
-  openssl
-  curl
-  expat
-];
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    zlib
+    fuse3
+    icu
+    nss
+    openssl
+    curl
+    expat
+  ];
 }
