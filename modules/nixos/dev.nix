@@ -59,6 +59,7 @@ let
     doxygen
     tree-sitter
     arduino-cli
+    vim
 
     (inputs.nix-shell-gen.packages.${pkgs.system}.default)
   ];
