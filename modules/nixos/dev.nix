@@ -51,6 +51,7 @@ let
   ];
 
   generalDevUtils = with pkgs; [
+    stdenv.cc.cc.lib
     git
     gnumake
     screen
