@@ -1,9 +1,7 @@
 # modules/nixos/apps.nix
 { inputs, pkgs, ... }:
-let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
-in
-{
+let spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+in {
   programs = {
     spicetify = {
       enable = true;
@@ -26,6 +24,8 @@ in
     unzip
     curl
 
+    prismlauncher
+
     ueberzug
     ueberzugpp
     pay-respects
@@ -36,7 +36,7 @@ in
     obs-studio
 
     libreoffice
-  #  kicad
+    #  kicad
 
     zathura
     vlc
