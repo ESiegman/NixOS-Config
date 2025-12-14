@@ -37,7 +37,7 @@ in {
 
       blur = {
         enabled = true;
-        size = 8;
+        size = 5;
         passes = 3;
         new_optimizations = true;
         vibrancy = 0.1696;
@@ -52,7 +52,7 @@ in {
       };
     };
 
-    windowrulev2 = [ "opacity 0.95 0.85, class:^(kitty)$" ];
+    windowrulev2 = [ "opacity 0.97 0.90, class:^(kitty)$" ];
 
     animations = {
       enabled = true;
