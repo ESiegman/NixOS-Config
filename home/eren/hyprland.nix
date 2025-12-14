@@ -32,8 +32,8 @@ in {
 
     decoration = {
       rounding = 10;
-      active_opacity = 0.9;
-      inactive_opacity = 0.8;
+      active_opacity = 1.0;
+      inactive_opacity = 1.0;
 
       blur = {
         enabled = true;
@@ -51,6 +51,8 @@ in {
         color = "rgba(00000066)";
       };
     };
+
+    windowrulev2 = [ "opacity 0.9 0.8, class:^(kitty)$" ];
 
     animations = {
       enabled = true;
