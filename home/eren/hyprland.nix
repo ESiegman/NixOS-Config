@@ -52,7 +52,7 @@ in {
       };
     };
 
-    windowrulev2 = [ "opacity 0.30 0.80, class:^(kitty)$" ];
+    windowrulev2 = [ "opacity 0.90 0.50, class:^(kitty)$" ];
 
     animations = {
       enabled = true;
