@@ -1,16 +1,11 @@
 # home/eren/stylix.nix
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 let
   palette = config.stylix.base16Scheme;
   toRgba = hex: "rgba(${hex}FF)";
   mod = "SUPER";
   wallpaper = ../../images/wallpaper.png;
-in
-{
+in {
   stylix.targets.hyprland.enable = false;
   wayland.windowManager.hyprland = {
     enable = true;
@@ -21,12 +16,7 @@ in
     monitor = ",highrr,auto,1";
     env = [ "XCURSOR_SIZE,24" ];
 
-    exec-once = [
-      "waybar"
-      "swww-daemon"
-      "swww img ${wallpaper}"
-      "nm-applet"
-    ];
+    exec-once = [ "waybar" "swww-daemon" "swww img ${wallpaper}" "nm-applet" ];
 
     general = {
       gaps_in = 5;
@@ -35,20 +25,23 @@ in
       layout = "dwindle";
       allow_tearing = true;
 
-      "col.active_border" = "rgba(${palette.base0D}FF) rgba(${palette.base0C}FF) 45deg";
+      "col.active_border" =
+        "rgba(${palette.base0D}FF) rgba(${palette.base0C}FF) 45deg";
       "col.inactive_border" = toRgba palette.base01;
     };
 
     decoration = {
       rounding = 10;
-      active_opacity = 1.0;
-      inactive_opacity = 1.0;
+      active_opacity = 0.9;
+      inactive_opacity = 0.8;
 
       blur = {
         enabled = true;
-        size = 3;
-        passes = 1;
+        size = 8;
+        passes = 3;
+        new_optimizations = true;
         vibrancy = 0.1696;
+        ignore_opacity = true;
       };
 
       shadow = {
@@ -99,23 +92,14 @@ in
       "${mod} SHIFT, B, exec, chromium"
       "${mod}, M, exec, spotify"
       "${mod}, D, exec, vesktop"
-    ]
-    ++ (builtins.concatLists (
-      builtins.genList (
-        i:
-        let
-          ws = i + 1;
-        in
-        [
-          "$mod, code:1${toString i}, workspace, ${toString ws}"
-          "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-        ]
-      ) 9
-    ));
+    ] ++ (builtins.concatLists (builtins.genList (i:
+      let ws = i + 1;
+      in [
+        "$mod, code:1${toString i}, workspace, ${toString ws}"
+        "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+      ]) 9));
 
-    bindm = [
-      "${mod}, mouse:272, movewindow"
-      "${mod}, mouse:273, resizewindow"
-    ];
+    bindm =
+      [ "${mod}, mouse:272, movewindow" "${mod}, mouse:273, resizewindow" ];
   };
 }
