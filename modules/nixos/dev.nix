@@ -29,6 +29,7 @@ let
     texlive.combined.scheme-full
     cargo
     rust-analyzer
+    arduino-ide
   ];
 
   formattersAndLinters = with pkgs; [
