@@ -60,7 +60,7 @@ let
     doxygen
     tree-sitter
     arduino-cli
-    vim
+    quickshell
 
     (inputs.nix-shell-gen.packages.${pkgs.system}.default)
   ];
