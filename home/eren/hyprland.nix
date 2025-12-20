@@ -16,7 +16,12 @@ in {
     monitor = [ ", highrr, auto, 1" ", addreserved, 30, 0, 0, 0" ];
     env = [ "XCURSOR_SIZE,24" ];
 
-    exec-once = [ "waybar" "swww-daemon" "swww img ${wallpaper}" "nm-applet" ];
+    exec-once = [
+      "QML_XHR_ALLOW_FILE_READ=1 qs"
+      "swww-daemon"
+      "swww img ${wallpaper}"
+      "nm-applet"
+    ];
 
     general = {
       gaps_in = 5;
