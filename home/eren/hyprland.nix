@@ -13,7 +13,7 @@ in {
   };
   wayland.windowManager.hyprland.settings = {
 
-    monitor = ",highrr,auto,1";
+    monitor = [ ", highrr, auto, 1" ", addreserved, 30, 0, 0, 0" ];
     env = [ "XCURSOR_SIZE,24" ];
 
     exec-once = [ "waybar" "swww-daemon" "swww img ${wallpaper}" "nm-applet" ];
