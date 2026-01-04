@@ -59,7 +59,6 @@ let
     usbutils
     doxygen
     tree-sitter
-    arduino-cli
     quickshell
 
     (inputs.nix-shell-gen.packages.${pkgs.system}.default)
