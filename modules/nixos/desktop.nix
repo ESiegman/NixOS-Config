@@ -1,9 +1,7 @@
 # modules/nixos/desktop.nix
 { pkgs, lib, ... }:
-let
-  wallpaper = ../../images/wallpaper.png;
-in
-{
+let wallpaper = ../../images/wallpaper.png;
+in {
   services = {
     udev.enable = true;
     dbus.enable = true;
@@ -47,6 +45,7 @@ in
       SUBSYSTEM=="usb", ATTR{idVendor}=="2341", ATTR{idProduct}=="0070", MODE="0666", GROUP="dialout"
       SUBSYSTEM=="usb", ATTR{idVendor}=="2341", ATTR{idProduct}=="0071", MODE="0666", GROUP="dialout"
     '';
+    tumbler.enable = true;
   };
 
   programs = {
@@ -72,13 +71,7 @@ in
       xdg-desktop-portal-gnome
       xdg-desktop-portal-hyprland
     ];
-    config = {
-      common = {
-        default = [
-          "hyprland"
-        ];
-      };
-    };
+    config = { common = { default = [ "hyprland" ]; }; };
     #   mimeApps.defaultApplications = {
     #     "text/plain" = "nvim.desktop";
     #     "application/pdf" = "zathura.desktop";
@@ -109,6 +102,10 @@ in
       xdg-desktop-portal
       base16-schemes
       swww
+      gdk-pixbuf
+      imagemagick
+      ffmpegthumbnailer
+      poppler
     ];
   };
 }
