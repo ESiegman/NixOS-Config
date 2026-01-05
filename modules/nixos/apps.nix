@@ -47,6 +47,8 @@ in {
     wine
     samba
     winetricks
+
+    steam
   ];
 
   virtualisation.docker.enable = true;
