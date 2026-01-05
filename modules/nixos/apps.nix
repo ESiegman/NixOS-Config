@@ -22,6 +22,7 @@ in {
     wget
     zip
     unzip
+    file-roller
     curl
 
     prismlauncher
