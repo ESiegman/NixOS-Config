@@ -33,6 +33,18 @@ in {
       wireplumber.enable = true;
       jack.enable = true;
       pulse.enable = true;
+      extraConfig.pipewire."99-virtual-camera" = {
+        "context.modules" = [{
+          name = "libpipewire-module-v4l2-loopback";
+          args = {
+            "device.name" = "Virtual-Camera";
+            "device.label" = "Neko Avatar Camera";
+            "video.width" = 1920;
+            "video.height" = 1080;
+            "video.format" = "I420"; # Forces the 4:2:0 format Discord needs
+          };
+        }];
+      };
     };
     openssh = {
       enable = true;
@@ -107,13 +119,14 @@ in {
       ffmpegthumbnailer
       poppler
       v4l-utils
+      obs-studio-plugins.obs-pipewire-audio-capture
       config.boot.kernelPackages.v4l2loopback
     ];
   };
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   boot.kernelModules = [ "v4l2loopback" ];
   boot.extraModprobeConfig = ''
-    options v4l2loopback devices=2 video_nr=1,10 card_label="OBS-Raw","Discord-Ready" exclusive_caps=1
+    options v4l2loopback devices=1 video_nr=1 card_label="Virtual Camera" exclusive_caps=1 max_buffers=2
   '';
   programs.obs-studio.enableVirtualCamera = true;
 }
