@@ -36,7 +36,7 @@ in {
     obs-studio
 
     libreoffice
-    #  kicad
+    kicad
 
     zathura
     vlc
