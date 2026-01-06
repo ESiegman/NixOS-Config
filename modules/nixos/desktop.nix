@@ -33,20 +33,6 @@ in {
       wireplumber.enable = true;
       jack.enable = true;
       pulse.enable = true;
-      extraConfig.pipewire."99-virtual-camera" = {
-        "context.modules" = [{
-          name = "libpipewire-module-v4l2-loopback";
-          args = {
-            "node.name" = "VTube_Virtual_Cam";
-            "node.description" = "Wayland Virtual Camera";
-            # exclusive_caps is required for Chromium/Discord to see it
-            "device.caps" = [
-              "video/x-raw,format=I420,width=1920,height=1080,framerate=60/1"
-            ];
-            "exclusive_caps" = true;
-          };
-        }];
-      };
     };
     openssh = {
       enable = true;
@@ -99,7 +85,6 @@ in {
       NIXOS_OZONE_WL = "1";
       WLR_NO_HARDWARE_CURSORS = "0";
       VIRTUAL_ENV_DISABLE_PROMPT = "1";
-      OPENCV_VIDEOIO_PRIORITY_LIST = "PIPEWIRE,V4L2";
     };
     systemPackages = with pkgs; [
       libnotify
@@ -120,7 +105,6 @@ in {
       imagemagick
       ffmpegthumbnailer
       poppler
-      v4l-utils
       wireplumber
     ];
   };
