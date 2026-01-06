@@ -33,6 +33,7 @@ in {
       wireplumber.enable = true;
       jack.enable = true;
       pulse.enable = true;
+      camera.enable = true;
     };
     openssh = {
       enable = true;
@@ -86,6 +87,7 @@ in {
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       WLR_NO_HARDWARE_CURSORS = "0";
+      OPENCV_VIDEOIO_PRIORITY_LIST = "PIPEWIRE,V4L2";
     };
     systemPackages = with pkgs; [
       libnotify
@@ -107,13 +109,7 @@ in {
       ffmpegthumbnailer
       poppler
       v4l-utils
-      config.boot.kernelPackages.v4l2loopback
     ];
   };
-  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
-  boot.kernelModules = [ "v4l2loopback" ];
-  boot.extraModprobeConfig = ''
-    options v4l2loopback devices=2 video_nr=10,11 card_label="OBS Virtual Cam","Discord Proxy" exclusive_caps=1,1
-  '';
   programs.obs-studio.enableVirtualCamera = true;
 }
