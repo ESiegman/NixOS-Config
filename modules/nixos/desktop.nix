@@ -107,7 +107,6 @@ in {
       ffmpegthumbnailer
       poppler
       v4l-utils
-      obs-studio-plugins.obs-pipewire-audio-capture
       config.boot.kernelPackages.v4l2loopback
     ];
   };

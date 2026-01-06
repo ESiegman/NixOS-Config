@@ -1,6 +1,5 @@
 # modules/nixos/core.nix
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   networking = {
     hostName = "nixos-desktop";
     networkmanager.enable = true;
@@ -13,10 +12,7 @@
 
   nix = {
     settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
     };
     gc = {
@@ -46,6 +42,7 @@
       "input"
       "dialout"
       "docker"
+      "render"
     ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
