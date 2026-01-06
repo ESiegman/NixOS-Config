@@ -34,14 +34,6 @@ in {
     cmatrix
     cbonsai
 
-    (pkgs.wrapOBS {
-      plugins = with pkgs.obs-studio-plugins; [
-        obs-vaapi
-        obs-vkcapture
-        obs-pipewire-audio-capture
-      ];
-    })
-
     libreoffice
     kicad
 

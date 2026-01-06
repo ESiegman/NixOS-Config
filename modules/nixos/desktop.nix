@@ -110,5 +110,13 @@ in {
       wireplumber
     ];
   };
-  programs.obs-studio.enableVirtualCamera = true;
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+    plugins = with pkgs.obs-studio-plugins; [
+      obs-vaapi
+      obs-vkcapture
+      obs-pipewire-audio-capture
+    ];
+  };
 }
