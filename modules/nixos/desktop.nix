@@ -33,18 +33,6 @@ in {
       wireplumber.enable = true;
       jack.enable = true;
       pulse.enable = true;
-      extraConfig.pipewire."99-virtual-camera" = {
-        "context.modules" = [{
-          name = "libpipewire-module-v4l2-loopback";
-          args = {
-            "device.name" = "Virtual-Camera";
-            "device.label" = "Neko Avatar Camera";
-            "video.width" = 1920;
-            "video.height" = 1080;
-            "video.format" = "I420"; # Forces the 4:2:0 format Discord needs
-          };
-        }];
-      };
     };
     openssh = {
       enable = true;
