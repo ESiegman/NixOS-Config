@@ -33,6 +33,20 @@ in {
       wireplumber.enable = true;
       jack.enable = true;
       pulse.enable = true;
+      extraConfig.pipewire."99-virtual-camera" = {
+        "context.modules" = [{
+          name = "libpipewire-module-v4l2-loopback";
+          args = {
+            "node.name" = "VTube_Virtual_Cam";
+            "node.description" = "Wayland Virtual Camera";
+            # exclusive_caps is required for Chromium/Discord to see it
+            "device.caps" = [
+              "video/x-raw,format=I420,width=1920,height=1080,framerate=60/1"
+            ];
+            "exclusive_caps" = true;
+          };
+        }];
+      };
     };
     openssh = {
       enable = true;
