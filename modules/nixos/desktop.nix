@@ -33,7 +33,6 @@ in {
       wireplumber.enable = true;
       jack.enable = true;
       pulse.enable = true;
-      camera.enable = true;
     };
     openssh = {
       enable = true;
@@ -68,8 +67,6 @@ in {
     wlr.enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-gnome
       xdg-desktop-portal-hyprland
     ];
     config = { common = { default = [ "hyprland" ]; }; };
@@ -87,6 +84,7 @@ in {
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       WLR_NO_HARDWARE_CURSORS = "0";
+      VIRTUAL_ENV_DISABLE_PROMPT = "1";
       OPENCV_VIDEOIO_PRIORITY_LIST = "PIPEWIRE,V4L2";
     };
     systemPackages = with pkgs; [
@@ -109,6 +107,7 @@ in {
       ffmpegthumbnailer
       poppler
       v4l-utils
+      wireplumber
     ];
   };
   programs.obs-studio.enableVirtualCamera = true;
