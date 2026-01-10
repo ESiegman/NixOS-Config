@@ -1,6 +1,5 @@
 # home/eren/zsh.nix
-{ config, ... }:
-{
+{ config, ... }: {
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -10,7 +9,8 @@
     autocd = true;
 
     shellAliases = {
-      ls = "ls --color=auto";
+      ls =
+        "eza --tree --level=3 --icons --long --no-permissions --no-user --no-time --git-ignore";
       cat = "bat";
       grep = "grep --color=auto";
       ".." = "cd ..";
@@ -19,7 +19,8 @@
       ll = "ls -l";
       zed = "zeditor";
 
-      fastfetch = "fastfetch --logo /etc/nixos/images/fastfetch.png --logo-height 21";
+      fastfetch =
+        "fastfetch --logo /etc/nixos/images/fastfetch.png --logo-height 21";
     };
 
     history = {
@@ -31,10 +32,7 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [
-        "git"
-        "sudo"
-      ];
+      plugins = [ "git" "sudo" ];
     };
 
     initContent = ''
