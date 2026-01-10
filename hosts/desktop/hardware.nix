@@ -4,6 +4,11 @@
     device = "/swapfile";
     size = 32 * 1024;
   }];
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-uuid/66f84348-ec47-4ea2-9da7-c0d5d336c8f8";
+    fsType = "ext4";
+    options = [ "defaults" "nofail" ];
+  };
 
   boot = {
     loader = {
