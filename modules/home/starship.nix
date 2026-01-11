@@ -56,7 +56,7 @@
         symbol = "";
         style = "bg:${color_bg3}";
         format =
-          "[[ $symbol ](fg:${color_accent} bg:${color_bg3})][[ $branch ](fg:${color_text_main} bg:${color_bg3})]($style)";
+          "[[$symbol ](fg:${color_accent} bg:${color_bg3})[$branch](fg:${color_text_main} bg:${color_bg3})]($style)";
       };
 
       git_status = {
