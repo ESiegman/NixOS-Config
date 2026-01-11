@@ -1,0 +1,116 @@
+/* modules/native/firefox/userChrome.css */
+
+:root {
+  --accent-color: #fcbccd;
+  --accent-color-light: #f16084;
+  --background-color: #11111b;
+  --background-color2: #181825;
+  --background-color3: #1e1e2e;
+  --link-color: #85c1dc !important;
+}
+
+/* --- UI Cleanup & Tabs --- */
+#TabsToolbar {
+  background: var(--background-color3) !important;
+  height: 40px !important;
+}
+
+#nav-bar {
+  margin-right: 0px !important;
+}
+
+#tabbrowser-arrowscrollbox > .tabbrowser-tab {
+  background: var(--background-color2) !important;
+  margin: 4px 2px 0px 2px !important;
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+}
+
+#tabbrowser-arrowscrollbox > .tabbrowser-tab[selected="true"] {
+  background: var(--background-color) !important;
+}
+
+.tabbrowser-tab[selected="true"] > .tab-stack > .tab-background {
+  display: none !important;
+}
+
+/* Hide tabline (if using Sidebery) */
+#TabsToolbar .toolbar-items {
+  display: none !important;
+}
+
+/* --- URL Bar & Nav Bar --- */
+#nav-bar,
+#PersonalToolbar {
+  background: var(--background-color) !important;
+}
+
+#urlbar {
+  color: var(--accent-color) !important;
+}
+
+#urlbar-background {
+  background: var(--background-color) !important;
+  border-width: 2px !important;
+  border-radius: 5px !important;
+}
+
+#urlbar:hover > #urlbar-background {
+  border-color: var(--accent-color) !important;
+}
+
+/* --- Menus & Popups --- */
+.menupopup-arrowscrollbox {
+  background-color: var(--background-color) !important;
+  color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+}
+
+#downloadsPanel-mainView,
+#unified-extensions-view {
+  background-color: var(--background-color) !important;
+  color: var(--accent-color) !important;
+}
+
+/* --- Sidebar (Sidebery) Hover Effect --- */
+#sidebar-header {
+  display: none !important;
+}
+
+#sidebar-box {
+  --sidebar-normal-width: 40px;
+  --sidebar-hover-width: 250px;
+  position: fixed !important;
+  left: 0 !important;
+  top: 40px !important;
+  bottom: 0 !important;
+  z-index: 900 !important;
+  min-width: var(--sidebar-normal-width) !important;
+  max-width: var(--sidebar-normal-width) !important;
+  transition: all 150ms ease-in-out !important;
+}
+
+#sidebar-box:hover {
+  min-width: var(--sidebar-hover-width) !important;
+  max-width: var(--sidebar-hover-width) !important;
+}
+
+#sidebar-splitter {
+  display: none !important;
+}
+
+/* Browser Content Curve */
+:root:not([sizemode="fullscreen"]) .browserStack > browser {
+  margin-left: 40px !important;
+  transition: clip-path 150ms ease-in-out !important;
+  clip-path: xywh(0 0 100% 100% round 9px 0 0 0);
+}
+
+/* --- Extras Removal --- */
+#save-to-pocket-button,
+#context-pocket,
+#context-sendimage,
+#context-savelinktopocket,
+#context-setDesktopBackground {
+  display: none !important;
+}
