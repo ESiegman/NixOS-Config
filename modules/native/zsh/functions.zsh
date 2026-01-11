@@ -15,6 +15,7 @@ function pyenv {
 }
 
 function nswitch {
+  local starting_dir=$(pwd)
   local config_dir="$HOME/NixOS-Config"
   local host=$(hostname)
 
@@ -23,7 +24,7 @@ function nswitch {
     return 1
   fi
 
-  pushd "$config_dir" > /dev/null
+  cd "$config_dir" || return
 
   if ! git diff --quiet HEAD; then
     echo "Changes detected. Creating a temporary commit..."
@@ -49,17 +50,15 @@ function nswitch {
     else
       echo "Push skipped. Changes remain in your local Git history."
     fi
-
   else
     local exit_code=$?
     echo "----------------------------------------------------"
     echo "ERROR: NixOS switch FAILED with exit code $exit_code."
-    echo "Your edits are saved in a local commit, but NOT pushed."
-    popd > /dev/null
+    cd "$starting_dir"
     return $exit_code
   fi
 
-  popd > /dev/null
+  cd "$starting_dir"
 }
 
 function nsearch {
