@@ -9,42 +9,30 @@
   --link-color: #85c1dc !important;
 }
 
-/* --- UI Cleanup & Tabs --- */
+/* --- Nuke the Top Bar (Titlebar & Tabs) --- */
+
+/* Completely hide the titlebar and horizontal tabs */
+#titlebar,
 #TabsToolbar {
-  background: var(--background-color3) !important;
-  height: 40px !important;
+  visibility: collapse !important;
+  display: none !important;
 }
 
+/* Remove the window controls (the 'x' button box) */
+.titlebar-buttonbox-container {
+  display: none !important;
+}
+
+/* Ensure the Nav-bar starts at the very top */
 #nav-bar {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+  border-top: none !important;
   margin-right: 0px !important;
-}
-
-#tabbrowser-arrowscrollbox > .tabbrowser-tab {
-  background: var(--background-color2) !important;
-  margin: 4px 2px 0px 2px !important;
-  border-top-left-radius: 5px !important;
-  border-top-right-radius: 5px !important;
-}
-
-#tabbrowser-arrowscrollbox > .tabbrowser-tab[selected="true"] {
   background: var(--background-color) !important;
 }
 
-.tabbrowser-tab[selected="true"] > .tab-stack > .tab-background {
-  display: none !important;
-}
-
-/* Hide tabline (if using Sidebery) */
-#TabsToolbar .toolbar-items {
-  display: none !important;
-}
-
-/* --- URL Bar & Nav Bar --- */
-#nav-bar,
-#PersonalToolbar {
-  background: var(--background-color) !important;
-}
-
+/* --- URL Bar Styling --- */
 #urlbar {
   color: var(--accent-color) !important;
 }
@@ -59,20 +47,7 @@
   border-color: var(--accent-color) !important;
 }
 
-/* --- Menus & Popups --- */
-.menupopup-arrowscrollbox {
-  background-color: var(--background-color) !important;
-  color: var(--accent-color) !important;
-  border-color: var(--accent-color) !important;
-}
-
-#downloadsPanel-mainView,
-#unified-extensions-view {
-  background-color: var(--background-color) !important;
-  color: var(--accent-color) !important;
-}
-
-/* --- Sidebar (Sidebery) Hover Effect --- */
+/* --- Sidebar (Sidebery) Seamless Hover --- */
 #sidebar-header {
   display: none !important;
 }
@@ -82,7 +57,7 @@
   --sidebar-hover-width: 250px;
   position: fixed !important;
   left: 0 !important;
-  top: 40px !important;
+  top: 0 !important; /* Fixed: Now starts at the absolute top */
   bottom: 0 !important;
   z-index: 900 !important;
   min-width: var(--sidebar-normal-width) !important;
@@ -99,18 +74,35 @@
   display: none !important;
 }
 
-/* Browser Content Curve */
+/* --- Browser Content Area --- */
+
+/* This creates the curved 'window inside a window' effect */
 :root:not([sizemode="fullscreen"]) .browserStack > browser {
   margin-left: 40px !important;
+  margin-top: 0px !important;
   transition: clip-path 150ms ease-in-out !important;
   clip-path: xywh(0 0 100% 100% round 9px 0 0 0);
 }
 
-/* --- Extras Removal --- */
+/* --- Menus & Popups --- */
+.menupopup-arrowscrollbox {
+  background-color: var(--background-color) !important;
+  color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+}
+
+#downloadsPanel-mainView,
+#unified-extensions-view {
+  background-color: var(--background-color) !important;
+  color: var(--accent-color) !important;
+}
+
+/* --- UI Cleanup (Extras) --- */
 #save-to-pocket-button,
 #context-pocket,
 #context-sendimage,
 #context-savelinktopocket,
-#context-setDesktopBackground {
+#context-setDesktopBackground,
+#PersonalToolbar {
   display: none !important;
 }
