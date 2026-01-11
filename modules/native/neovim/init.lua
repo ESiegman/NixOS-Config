@@ -17,6 +17,8 @@ lib.setup({
 	},
 	maps = {
 		{ "n", "<leader>w", "<cmd>write<cr>", { desc = "Save File" } },
+		{ "n", "<leader>wq", "<cmd>wq<cr>", { desc = "Save and Quit" } },
+		{ "n", "<leader>q", "<cmd>confirm quit<cr>", { desc = "Quit (with confirmation)" } },
 	},
 	autocmds = {
 		{
