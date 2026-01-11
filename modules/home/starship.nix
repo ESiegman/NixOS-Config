@@ -56,13 +56,13 @@
         symbol = "";
         style = "bg:${color_bg3}";
         format =
-          "[[ $symbol $branch ](fg:${color_accent} bg:${color_bg3})]($style)";
+          "[[ $symbol ](fg:${color_accent} bg:${color_bg3})][[ $branch ](fg:${color_text_main} bg:${color_bg3})]($style)";
       };
 
       git_status = {
         style = "bg:${color_bg3}";
         format =
-          "[[($all_status$ahead_behind )](fg:${color_accent} bg:${color_bg3})]($style)";
+          "[[($all_status$ahead_behind )](fg:${color_text_main} bg:${color_bg3})]($style)";
       };
 
       nix_shell = {
