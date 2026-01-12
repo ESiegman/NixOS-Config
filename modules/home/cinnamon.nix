@@ -42,5 +42,4 @@
     };
   };
 
-  home.packages = with pkgs; [ cinnamon-favouritemenu ];
 }

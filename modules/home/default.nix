@@ -1,6 +1,6 @@
 { osConfig, ... }: {
   imports =
-    [ ./zsh.nix ./starship.nix ./fastfetch.nix ./firefox.nix ./vesktop.nix ]
+    [ ./zsh.nix ./starship.nix ./fastfetch.nix ./firefox.nix ./vesktop.nix ./neovim.nix ]
     ++ (if osConfig.networking.hostName == "desktop" then [
       ./hypr/hyprland.nix
       ./hypr/hyprlock.nix
@@ -14,6 +14,7 @@
   stylix.targets = {
     firefox.enable = false;
     vesktop.enable = false;
+    xresources.enable = false;
   };
 
   programs = {

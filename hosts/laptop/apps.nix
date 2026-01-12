@@ -2,10 +2,6 @@
 { pkgs, ... }:
 let
   cinnamon-ui = with pkgs; [
-    cinnamon-favouritemenu
-    mint-cursor-themes
-    mint-icon-themes
-    mint-themes
     gnome-screenshot
     dconf-editor
   ];

@@ -1,16 +1,17 @@
 # hosts/laptop/core.nix
 { pkgs, ... }:
-let wallpaper = ../../modules/assets/images/wallpaper-laptop.png;
+let wallpaper = ../../modules/assets/images/wallpaper-laptop.jpg;
 in {
   stylix.image = wallpaper;
 
-  service = {
+  services = {
     xserver = {
       enable = true;
       displayManager.lightdm.enable = true;
       desktopManager.cinnamon.enable = true;
     };
     libinput.enable = true;
+    power-profiles-daemon.enable = false;
     auto-cpufreq = {
       enable = true;
       settings = {
