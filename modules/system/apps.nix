@@ -16,7 +16,7 @@ let
     ripgrep
     fd
   ];
-  media = with pkgs; [ vlc pavucontrol zathura spotify ];
+  media = with pkgs; [ vlc pavucontrol zathura ];
   productivity = with pkgs; [ libreoffice kicad ];
 in {
   programs = {
