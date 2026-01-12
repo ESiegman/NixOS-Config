@@ -19,6 +19,7 @@ let
   media = with pkgs; [ vlc pavucontrol zathura ];
   productivity = with pkgs; [ libreoffice kicad ];
 in {
+  nixpkgs.config.packageOverrides = pkgs: { spotify = pkgs.spicetify-wrapped; };
   programs = {
     spicetify = {
       enable = true;
