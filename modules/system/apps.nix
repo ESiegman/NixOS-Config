@@ -31,7 +31,7 @@ in {
         oneko
       ];
       theme = spicePkgs.themes.sleek;
-      colorScheme = "Cherry";
+      colorScheme = "cherry";
     };
   };
   environment.systemPackages = terminal ++ media ++ productivity;
