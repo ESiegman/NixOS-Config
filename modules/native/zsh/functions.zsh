@@ -61,6 +61,46 @@ function nswitch {
   cd "$starting_dir"
 }
 
+function nup {
+  local config_dir="$HOME/NixOS-Config"
+  local starting_dir=$(pwd)
+
+  if [ ! -d "$config_dir" ]; then
+    echo "Error: Configuration directory '$config_dir' not found."
+    return 1
+  fi
+
+  cd "$config_dir" || return
+
+  echo "Checking for remote changes on GitHub..."
+  
+  git fetch origin main
+
+  local status=$(git status -uno)
+  if [[ $status == *"Your branch is behind"* ]]; then
+    echo "New changes found on GitHub. Pulling..."
+    
+    if git pull origin main --rebase; then
+      echo "Successfully updated local files from GitHub."
+      echo "----------------------------------------------------"
+      nswitch
+    else
+      echo "ERROR: Conflict detected during pull. Please resolve manually."
+      cd "$starting_dir"
+      return 1
+    fi
+  else
+    echo "Local config is already up to date with GitHub."
+    echo -n "Would you like to run nswitch anyway? (y/N): "
+    read -r response
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      nswitch
+    fi
+  fi
+
+  cd "$starting_dir"
+}
+
 function nsearch {
   echo "--- Packages ---"
   nix-env -qaP "$1" | grep -i "$1"

@@ -1,7 +1,8 @@
 # modules/system/apps.nix
 { inputs, pkgs, ... }:
 let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+  spicePkgs =
+    inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   terminal = with pkgs; [
     kitty
     wget
@@ -19,7 +20,6 @@ let
   media = with pkgs; [ vlc pavucontrol zathura ];
   productivity = with pkgs; [ libreoffice kicad ];
 in {
-  nixpkgs.config.packageOverrides = pkgs: { spotify = pkgs.spicetify-wrapped; };
   programs = {
     spicetify = {
       enable = true;
