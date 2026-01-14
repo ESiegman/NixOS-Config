@@ -3,6 +3,8 @@
   programs.kitty = {
     enable = true;
     settings = {
+      background_opacity = "0.9";
+
       sync_to_monitor = "no";
       repaint_delay = 8;
       input_delay = 2;
