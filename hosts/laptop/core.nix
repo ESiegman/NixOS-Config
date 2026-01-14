@@ -5,11 +5,7 @@ in {
   stylix.image = wallpaper;
 
   services = {
-    xserver = {
-      enable = true;
-      displayManager.lightdm.enable = true;
-      desktopManager.cinnamon.enable = true;
-    };
+    xserver = { enable = true; };
     libinput.enable = true;
     power-profiles-daemon.enable = false;
     auto-cpufreq = {
