@@ -65,7 +65,8 @@
                 useUserPackages = true;
                 extraSpecialArgs = { inherit inputs user; };
                 backupFileExtension = "bak";
-                sharedModules = [ plasma-manager.homeModules.plasma-manager ];
+                sharedModules =
+                  [ inputs.plasma-manager.homeModules.plasma-manager ];
                 users.${user} = import ./modules/home/default.nix;
               };
             }
