@@ -12,7 +12,6 @@
 
       window_padding_width = 15;
       confirm_os_window_close = 0;
-      "shell_integration" = "no-rc";
 
       detect_urls = true;
       enable_audio_bell = false;
