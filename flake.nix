@@ -33,6 +33,12 @@
     };
 
     nix-shell-gen.url = "github:esiegman/nix-shell-gen";
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -51,6 +57,7 @@
             inputs.stylix.nixosModules.stylix
             inputs.spicetify-nix.nixosModules.default
             home-manager.nixosModules.home-manager
+            home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
 
             {
               nixpkgs.config.allowUnfree = true;
