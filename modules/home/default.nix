@@ -13,7 +13,7 @@
     ./hypr/swaync.nix
     ./hypr/wofi.nix
   ] else if osConfig.networking.hostName == "laptop" then
-    [ ./cinnamon.nix ]
+    [ ./kde.nix ]
   else
     [ ]);
 

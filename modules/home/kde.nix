@@ -1,0 +1,4 @@
+# modules/home/kde.nix
+
+{ ... }:
+{ }
