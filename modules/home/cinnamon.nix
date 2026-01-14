@@ -34,28 +34,27 @@
       ];
     };
 
-    home.file.".config/cinnamon/spices/grouped-window-list@cinnamon.org/365.json".text = builtins.toJSON {
-    "pinned-apps" = {
-      "type" = "list";
-      "value" = [
-        "nemo.desktop"
-        "firefox.desktop"
-        "kitty.desktop"
-        "vesktop.desktop"
-        "spotify.desktop"
-      ];
-    };
-    # We include these to ensure Cinnamon views the file as valid
-    "panel-edit-mode" = {
-      "type" = "boolean";
-      "value" = false;
-    };
-    "show-labels" = {
-      "type" = "boolean";
-      "value" = false;
-    };
-  };
-}
+    home.file.".config/cinnamon/spices/grouped-window-list@cinnamon.org/365.json".text =
+      builtins.toJSON {
+        "pinned-apps" = {
+          "type" = "list";
+          "value" = [
+            "nemo.desktop"
+            "firefox.desktop"
+            "kitty.desktop"
+            "vesktop.desktop"
+            "spotify.desktop"
+          ];
+        };
+        "panel-edit-mode" = {
+          "type" = "boolean";
+          "value" = false;
+        };
+        "show-labels" = {
+          "type" = "boolean";
+          "value" = false;
+        };
+      };
 
     "org/cinnamon/desktop/screensaver" = {
       ask-for-password-delay = 0;
