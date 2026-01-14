@@ -1,10 +1,7 @@
 # hosts/laptop/apps.nix
 { pkgs, ... }:
 let
-  cinnamon-ui = with pkgs; [
-    gnome-screenshot
-    dconf-editor
-  ];
+  cinnamon-ui = with pkgs; [ gnome-screenshot dconf-editor ];
 
   mobility = with pkgs; [
     acpi

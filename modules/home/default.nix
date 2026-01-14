@@ -14,7 +14,6 @@
   stylix.targets = {
     firefox.enable = false;
     vesktop.enable = false;
-    xresources.enable = false;
   };
 
   programs = {
