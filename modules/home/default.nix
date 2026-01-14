@@ -20,6 +20,7 @@
   stylix.targets = {
     firefox.enable = false;
     vesktop.enable = false;
+    kitty.enable = false;
   };
 
   programs = {
