@@ -57,8 +57,6 @@
             inputs.stylix.nixosModules.stylix
             inputs.spicetify-nix.nixosModules.default
             home-manager.nixosModules.home-manager
-            home-manager.sharedModules = [ plasma-manager.homeModules.plasma-manager ];
-
             {
               nixpkgs.config.allowUnfree = true;
 
@@ -67,6 +65,7 @@
                 useUserPackages = true;
                 extraSpecialArgs = { inherit inputs user; };
                 backupFileExtension = "bak";
+                sharedModules = [ plasma-manager.homeModules.plasma-manager ];
                 users.${user} = import ./modules/home/default.nix;
               };
             }
