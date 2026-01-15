@@ -21,7 +21,7 @@
             ];
           };
         }
-        #"org.kde.plasma.marginsseparator"
+        "org.kde.plasma.marginsseparator"
         {
           systemTray.items = {
             shown = [
