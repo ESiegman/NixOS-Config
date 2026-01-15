@@ -3,11 +3,20 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  hardware.graphics = {
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+    ];
+  };
+
   hardware.nvidia = {
     modesetting.enable = true;
 
-    powerManagement.enable = false;
-    powerManagement.finegrained = true;
+    powerManagement.enable = true;
+    powerManagement.finegrained = false;
 
     open = true;
 
@@ -23,5 +32,10 @@
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
     };
+  };
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "nvidia";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 }
