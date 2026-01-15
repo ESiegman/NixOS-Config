@@ -70,23 +70,23 @@ function nup {
     return 1
   fi
 
-  cd "$config_dir" || return
+  PAGER=cat builtin cd "$config_dir" || return
 
   echo "Checking for remote changes on GitHub..."
   
-  git fetch origin main --quiet
+  PAGER=cat git fetch origin main --quiet
 
   local status=$(git status -uno)
   if [[ $status == *"Your branch is behind"* ]]; then
     echo "New changes found on GitHub. Pulling..."
     
-    if git --no-pager pull origin main --rebase --quiet; then
+    if PAGER=cat git pull origin main --rebase --quiet; then
       echo "Successfully updated local files from GitHub."
       echo "----------------------------------------------------"
-      nswitch
+      PAGER=cat nswitch
     else
       echo "ERROR: Conflict detected during pull. Please resolve manually."
-      cd "$starting_dir"
+      builtin cd "$starting_dir"
       return 1
     fi
   else
@@ -94,13 +94,12 @@ function nup {
     echo -n "Would you like to run nswitch anyway? (y/N): "
     read -r response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      nswitch
+      PAGER=cat nswitch
     fi
   fi
 
-  cd "$starting_dir"
+  builtin cd "$starting_dir"
 }
-
 function nsearch {
   echo "--- Packages ---"
   nix-env -qaP "$1" | grep -i "$1"
