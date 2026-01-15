@@ -25,19 +25,22 @@ in {
     thermald.enable = true;
   };
 
-  home-manager.users.eren = {
-    programs.kitty.package = pkgs.symlinkJoin {
-      name = "kitty-wrapped-nvidia";
-      paths = [ pkgs.kitty ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/kitty \
-          --run "export __NV_PRIME_RENDER_OFFLOAD=1" \
-          --run "export __GLX_VENDOR_LIBRARY_NAME=nvidia" \
-          --run "export VK_ICD_FILENAMES=/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json"
-      '';
-    };
-  };
+  nixpkgs.overlays = [
+    (self: super: {
+      kitty = super.symlinkJoin {
+        name = "kitty";
+        paths = [ super.kitty ];
+        buildInputs = [ super.makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/kitty \
+            --set __NV_PRIME_RENDER_OFFLOAD 1 \
+            --set __GLX_VENDOR_LIBRARY_NAME nvidia \
+            --set VK_ICD_FILENAMES /run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json \
+            --set KITI_ENABLE_WAYLAND 1
+        '';
+      };
+    })
+  ];
 
   systemd.user.services.libinput-gestures = {
     description = "Libinput Gestures";
