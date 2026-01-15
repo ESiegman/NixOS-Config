@@ -70,18 +70,16 @@ function nup {
     return 1
   fi
 
-  # Use PAGER=cat and builtin cd to stay automated
   PAGER=cat builtin cd "$config_dir" || return
 
   echo "Checking for remote changes on GitHub..."
-
   PAGER=cat git fetch origin main --quiet
 
-  # Renamed variable to avoid 'read-only' error
-  local git_status=$(git status -uno)
+  local LOCAL_HASH=$(git rev-parse HEAD)
+  local REMOTE_HASH=$(git rev-parse @{u})
 
-  if [[ $git_status == *"Your branch is behind"* ]]; then
-    echo "New changes found on GitHub. Pulling..."
+  if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
+    echo "Changes detected (Remote: ${REMOTE_HASH:0:7}). Pulling..."
 
     if PAGER=cat git pull origin main --rebase --quiet; then
       echo "Successfully updated local files from GitHub."
@@ -95,7 +93,7 @@ function nup {
   else
     echo "Local config is already up to date with GitHub."
     echo -n "Would you like to run nswitch anyway? (y/N): "
-    read -r response
+    read -r "response? "
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
       PAGER=cat nswitch
     fi
