@@ -22,6 +22,22 @@
           };
         }
         "org.kde.plasma.marginsseparator"
+        {
+          systemTray.items = {
+            shown = [
+              "org.kde.plasma.bluetooth"
+              "org.kde.plasma.networkmanagement"
+              "org.kde.plasma.battery"
+              "org.kde.plasma.volume"
+            ];
+          };
+        }
+        {
+          digitalClock = {
+            calendar.firstDayOfWeek = "sunday";
+            time.format = "12h";
+          };
+        }
       ];
     }];
   };
