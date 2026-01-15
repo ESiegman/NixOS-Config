@@ -27,4 +27,10 @@ let
 in {
   environment.systemPackages = cinnamon-ui ++ mobility ++ utils ++ productivity
     ++ thumbnailers;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    konsole
+    elisa
+    kate
+    okular
+  ];
 }
