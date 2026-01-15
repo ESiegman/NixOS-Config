@@ -6,6 +6,7 @@ in {
 
   services = {
     xserver = { enable = true; };
+    desktopManager.plasma6.enable = true;
     libinput.enable = true;
     power-profiles-daemon.enable = false;
     auto-cpufreq = {

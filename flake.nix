@@ -22,11 +22,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sddm-sugar-candy-nix = {
-      url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -81,13 +76,7 @@
       nixosConfigurations = {
         desktop = mkSystem {
           hostname = "desktop";
-          extraModules = [
-            inputs.sddm-sugar-candy-nix.nixosModules.default
-            {
-              nixpkgs.overlays =
-                [ inputs.sddm-sugar-candy-nix.overlays.default ];
-            }
-          ];
+          extraModules = [ ];
         };
 
         laptop = mkSystem {

@@ -8,12 +8,6 @@ in {
 
   services = {
     xserver.videoDrivers = [ "amdgpu" ];
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      package = pkgs.kdePackages.sddm;
-      theme = "breeze";
-    };
     openssh = {
       enable = true;
       # settings.PasswordAuthentication = false;

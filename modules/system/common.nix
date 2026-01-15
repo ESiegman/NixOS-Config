@@ -28,6 +28,12 @@
     blueman.enable = true;
     printing.enable = true;
     fwupd.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      extraPackages = [ pkgs.sddm-astronaut ];
+      theme = "sddm-astronaut-theme";
+    };
   };
 
   swapDevices = [{
