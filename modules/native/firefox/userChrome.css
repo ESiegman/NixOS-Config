@@ -11,19 +11,16 @@
 
 /* --- Nuke the Top Bar (Titlebar & Tabs) --- */
 
-/* Completely hide the titlebar and horizontal tabs */
 #titlebar,
 #TabsToolbar {
   visibility: collapse !important;
   display: none !important;
 }
 
-/* Remove the window controls (the 'x' button box) */
 .titlebar-buttonbox-container {
   display: none !important;
 }
 
-/* Ensure the Nav-bar starts at the very top */
 #nav-bar {
   margin-top: 0px !important;
   padding-top: 0px !important;
@@ -57,7 +54,7 @@
   --sidebar-hover-width: 250px;
   position: fixed !important;
   left: 0 !important;
-  top: 0 !important; /* Fixed: Now starts at the absolute top */
+  top: 0 !important;
   bottom: 0 !important;
   z-index: 900 !important;
   min-width: var(--sidebar-normal-width) !important;
@@ -75,8 +72,6 @@
 }
 
 /* --- Browser Content Area --- */
-
-/* This creates the curved 'window inside a window' effect */
 :root:not([sizemode="fullscreen"]) .browserStack > browser {
   margin-left: 40px !important;
   margin-top: 0px !important;

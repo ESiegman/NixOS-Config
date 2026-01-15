@@ -19,6 +19,29 @@
       };
 
       userChrome = builtins.readFile ./../native/firefox/userChrome.css;
+      userContent = ''
+        @-moz-document url("about:newtab"), url("about:home") {
+          body {
+            background-image: url("file://${
+              ./../assets/images/firefox.jpg
+            }") !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
+          }
+
+          .search-wrapper, .logo-and-wordmark {
+            display: none !important;
+          }
+
+          .top-site-outer {
+            background-color: rgba(24, 24, 37, 0.6) !important;
+            border-radius: 8px !important;
+            backdrop-filter: blur(4px);
+          }
+        }
+      '';
     };
   };
   stylix.targets.firefox.profileNames = [ "default" ];
