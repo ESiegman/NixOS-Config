@@ -32,7 +32,7 @@
     executable = true;
     text = ''
       #!/bin/sh
-      exec nvidia-offload ${pkgs.kitty}/bin/kitty "$@"
+      exec /run/current-system/sw/bin/nvidia-offload ${pkgs.kitty}/bin/kitty "$@"
     '';
     enable = (osConfig.networking.hostName or "") == "laptop";
   };
