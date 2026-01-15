@@ -8,7 +8,7 @@
         {
           kickoff = {
             icon = "nix-snowflake-white";
-            alphaSort = true;
+            sortAlphabetically = true;
           };
         }
         {
