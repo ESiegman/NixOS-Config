@@ -74,13 +74,13 @@ function nup {
 
   echo "Checking for remote changes on GitHub..."
   
-  git fetch origin main
+  git fetch origin main --quiet
 
   local status=$(git status -uno)
   if [[ $status == *"Your branch is behind"* ]]; then
     echo "New changes found on GitHub. Pulling..."
     
-    if git pull origin main --rebase; then
+    if git --no-pager pull origin main --rebase --quiet; then
       echo "Successfully updated local files from GitHub."
       echo "----------------------------------------------------"
       nswitch
