@@ -2,19 +2,6 @@
 { pkgs, ... }:
 let wallpaper = ../../modules/assets/images/wallpaper-laptop.jpg;
 in {
-  nixpkgs.overlays = [
-    (self: super: {
-      kitty = pkgs.writeShellScriptBin "kitty" ''
-        #!/bin/sh
-        if [ -f "/run/current-system/sw/bin/nvidia-offload" ]; then
-          exec /run/current-system/sw/bin/nvidia-offload ${super.kitty}/bin/kitty "$@"
-        else
-          exec ${super.kitty}/bin/kitty "$@"
-        fi
-      '';
-    })
-  ];
-
   stylix.image = wallpaper;
 
   services = {
