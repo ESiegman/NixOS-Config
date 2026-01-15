@@ -8,10 +8,9 @@
         paths = [ pkgs.kitty ];
         nativeBuildInputs = [ pkgs.makeWrapper ];
         postBuild = ''
-          wrapProgram $out/bin/kitty \
-            --set __NV_PRIME_RENDER_OFFLOAD 1 \
-            --set __GLX_VENDOR_LIBRARY_NAME nvidia \
-            --set VK_ICD_FILENAMES /run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json
+          mv $out/bin/kitty $out/bin/.kitty-original
+          makeWrapper /run/current-system/sw/bin/nvidia-offload $out/bin/kitty \
+            --add-flags "$out/bin/.kitty-original"
         '';
       })
     else
