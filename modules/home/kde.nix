@@ -45,6 +45,7 @@
       }
       {
         location = "top";
+        height = 20;
         widgets = [{
           applicationTitleBar = {
             behavior = { activeTaskSource = "activeTask"; };
