@@ -12,7 +12,7 @@
           };
         }
         {
-          icontasks = {
+          iconTasks = {
             launchers = [
               "applications:org.kde.settings.desktop"
               "applications:org.kde.dolphin.desktop"
