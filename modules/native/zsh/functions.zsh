@@ -61,36 +61,34 @@ function nswitch {
   cd "$starting_dir"
 }
 
-function ndup {
+function nup {
   local config_dir="$HOME/NixOS-Config"
   local starting_dir=$(pwd)
 
   if [ ! -d "$config_dir" ]; then
     echo "Error: Configuration directory '$config_dir' not found."
     return 1
+
   fi
 
-  if [[ -n "$(declare -f chpwd)" ]]; then
-    functions -u chpwd
-  fi
 
-  PAGER=cat builtin cd "$config_dir" || return
+  cd "$config_dir" || return
 
   echo "Checking for remote changes on GitHub..."
-  
-  PAGER=cat git fetch origin main --quiet
 
+  git fetch origin main
   local status=$(git status -uno)
+
   if [[ $status == *"Your branch is behind"* ]]; then
     echo "New changes found on GitHub. Pulling..."
-    
-    if PAGER=cat git pull origin main --rebase --quiet; then
+
+    if git pull origin main --rebase; then
       echo "Successfully updated local files from GitHub."
       echo "----------------------------------------------------"
-      PAGER=cat nswitch
+      nswitch
     else
       echo "ERROR: Conflict detected during pull. Please resolve manually."
-      builtin cd "$starting_dir"
+      cd "$starting_dir"
       return 1
     fi
   else
@@ -98,14 +96,13 @@ function ndup {
     echo -n "Would you like to run nswitch anyway? (y/N): "
     read -r response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      PAGER=cat nswitch
+      nswitch
     fi
   fi
 
-  builtin cd "$starting_dir"
+  cd "$starting_dir"
+} 
 
-  source ~/.zshrc
-}
 function nsearch {
   echo "--- Packages ---"
   nix-env -qaP "$1" | grep -i "$1"
@@ -116,20 +113,6 @@ function nsearch {
 
 function try {
   nix-shell -p "$@" --run zsh
-}
-
-function nup() {
-  local config_dir="$HOME/NixOS-Config"
-  pushd "$config_dir" > /dev/null
-  
-  echo "Updating flake inputs..."
-  nix flake update
-  
-  echo "----------------------------------------------------"
-  echo "Input changes:"
-  git diff flake.lock
-  
-  popd > /dev/null
 }
 
 function nerr() {
