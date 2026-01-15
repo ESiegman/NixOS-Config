@@ -28,4 +28,11 @@
       source ${../../modules/native/zsh/startup.zsh}
     '';
   };
+  home.file = {
+    ".config/zsh/var.zsh".source = ../../modules/native/zsh/var.zsh;
+    ".config/zsh/alias.zsh".source = ../../modules/native/zsh/alias.zsh;
+    ".config/zsh/bindings.zsh".source = ../../modules/native/zsh/bindings.zsh;
+    ".config/zsh/functions.zsh".source = ../../modules/native/zsh/functions.zsh;
+    ".config/zsh/startup.zsh".source = ../../modules/native/zsh/startup.zsh;
+  };
 }
