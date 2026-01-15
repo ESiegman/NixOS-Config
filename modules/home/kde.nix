@@ -14,7 +14,7 @@
         {
           iconTasks = {
             launchers = [
-              "applications:org.kde.settings.desktop"
+              "applications:org.kde.systemsettings.desktop"
               "applications:org.kde.dolphin.desktop"
               "applications:kitty.desktop"
               "applications:firefox.desktop"
@@ -30,6 +30,7 @@
               "org.kde.plasma.battery"
               "org.kde.plasma.volume"
             ];
+            hidden = [ "org.kde.plasma.clipboard" ];
           };
         }
         {
