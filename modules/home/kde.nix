@@ -12,7 +12,19 @@
             alphaSort = true;
           };
         }
-        { name = "org.kde.plasma.icontasks"; }
+        {
+          name = "org.kde.plasma.icontasks";
+          config = {
+            General = {
+              launchers = [
+                "applications:org.kde.settings.desktop"
+                "applications:org.kde.dolphin.desktop"
+                "applications:kitty.desktop"
+                "applications:firefox.desktop"
+              ];
+            };
+          };
+        }
       ];
     }];
   };
