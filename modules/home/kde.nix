@@ -6,25 +6,22 @@
       location = "bottom";
       widgets = [
         {
-          name = "org.kde.plasma.kickoff";
-          config = {
+          kickoff = {
             icon = "nix-snowflake-white";
             alphaSort = true;
           };
         }
         {
-          name = "org.kde.plasma.icontasks";
-          config = {
-            General = {
-              launchers = [
-                "applications:org.kde.settings.desktop"
-                "applications:org.kde.dolphin.desktop"
-                "applications:kitty.desktop"
-                "applications:firefox.desktop"
-              ];
-            };
+          icontasks = {
+            launchers = [
+              "applications:org.kde.settings.desktop"
+              "applications:org.kde.dolphin.desktop"
+              "applications:kitty.desktop"
+              "applications:firefox.desktop"
+            ];
           };
         }
+        "org.kde.plasma.marginsseparator"
       ];
     }];
   };
