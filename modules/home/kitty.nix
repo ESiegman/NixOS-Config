@@ -4,19 +4,15 @@
     enable = true;
     package = let
       isLaptop = (osConfig.networking.hostName or "") == "laptop";
-
       baseKitty = pkgs.kitty;
     in if isLaptop then
       pkgs.writeShellScriptBin "kitty" ''
         #!/bin/sh
-        if [ -f "/run/current-system/sw/bin/nvidia-offload" ]; then
-          exec /run/current-system/sw/bin/nvidia-offload ${baseKitty}/bin/kitty "$@"
-        else
-          exec ${baseKitty}/bin/kitty "$@"
-        fi
+        exec nvidia-offload ${baseKitty}/bin/kitty "$@"
       ''
     else
       baseKitty;
+
     settings = {
       background_opacity = "0.9";
 
