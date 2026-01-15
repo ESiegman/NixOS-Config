@@ -6,7 +6,7 @@
       linux_display_server = "wayland";
       background_opacity = "0.9";
 
-      sync_to_monitor = "no";
+      sync_to_monitor = "yes";
       repaint_delay = 8;
       input_delay = 2;
 
@@ -25,7 +25,7 @@
       shell_integration = "enabled";
       term = "xterm-kitty";
 
-      hardware_acceleration = "yes";
+      linux_display_server = "wayland";
     };
   };
 }
