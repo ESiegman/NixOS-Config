@@ -26,10 +26,10 @@ in {
   };
 
   home-manager.users.eren = {
-    home.sessionVariables = {
-      __NV_PRIME_RENDER_OFFLOAD = "0";
-      __GLX_VENDOR_LIBRARY_NAME = "mesa";
-    };
+    programs.kitty.package = pkgs.writeShellScriptBin "kitty" ''
+      #!/bin/sh
+      exec nvidia-offload ${pkgs.kitty}/bin/kitty "$@"
+    '';
   };
 
   systemd.user.services.libinput-gestures = {
