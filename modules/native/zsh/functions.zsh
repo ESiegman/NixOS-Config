@@ -70,6 +70,10 @@ function nup {
     return 1
   fi
 
+  if [[ -n "$(declare -f chpwd)" ]]; then
+    functions -u chpwd
+  fi
+
   PAGER=cat builtin cd "$config_dir" || return
 
   echo "Checking for remote changes on GitHub..."
@@ -99,6 +103,8 @@ function nup {
   fi
 
   builtin cd "$starting_dir"
+
+  source ~/.zshrc
 }
 function nsearch {
   echo "--- Packages ---"
