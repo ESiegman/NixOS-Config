@@ -61,7 +61,7 @@ function nswitch {
   cd "$starting_dir"
 }
 
-function nup {
+function ndup {
   local config_dir="$HOME/NixOS-Config"
   local starting_dir=$(pwd)
 
