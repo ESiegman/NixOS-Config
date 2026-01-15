@@ -1,8 +1,8 @@
 # home/eren/kitty.nix
-{ pkgs, config, ... }: {
+{ pkgs, osConfig, ... }: {
   programs.kitty = {
     enable = true;
-    package = if config.networking.hostName == "laptop" then
+    package = if osConfig.networking.hostName == "laptop" then
       (pkgs.symlinkJoin {
         name = "kitty";
         paths = [ pkgs.kitty ];
