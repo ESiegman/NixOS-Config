@@ -48,6 +48,7 @@
         alignment = "center";
         height = 20;
         widgets = [
+          "org.kde.plasma.panelspacer"
           {
             applicationTitleBar = {
               behavior = { activeTaskSource = "activeTask"; };
