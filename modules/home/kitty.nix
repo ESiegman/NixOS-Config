@@ -1,20 +1,7 @@
 # home/eren/kitty.nix
-{ pkgs, osConfig, ... }: {
+{ pkgs, ... }: {
   programs.kitty = {
     enable = true;
-    package = if osConfig.networking.hostName == "laptop" then
-      (pkgs.symlinkJoin {
-        name = "kitty";
-        paths = [ pkgs.kitty ];
-        nativeBuildInputs = [ pkgs.makeWrapper ];
-        postBuild = ''
-          mv $out/bin/kitty $out/bin/.kitty-original
-          makeWrapper /run/current-system/sw/bin/nvidia-offload $out/bin/kitty \
-            --add-flags "$out/bin/.kitty-original"
-        '';
-      })
-    else
-      pkgs.kitty;
     settings = {
       background_opacity = "0.9";
 
