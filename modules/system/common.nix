@@ -25,7 +25,6 @@
       wireplumber.enable = true;
     };
     playerctld.enable = true;
-    blueman.enable = true;
     printing.enable = true;
     fwupd.enable = true;
     displayManager.sddm = {

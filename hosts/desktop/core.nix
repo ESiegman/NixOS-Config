@@ -15,7 +15,7 @@ in {
     };
     tumbler.enable = true;
   };
-
+  blueman.enable = true;
   programs = {
     hyprland.enable = true;
     xfconf.enable = true;
