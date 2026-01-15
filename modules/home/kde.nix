@@ -45,6 +45,7 @@
       }
       {
         location = "top";
+        alignment = "center";
         height = 20;
         widgets = [
           {
