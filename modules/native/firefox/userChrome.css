@@ -1,5 +1,5 @@
 /* modules/native/firefox/userChrome.css */
-
+/*
 :root {
   --accent-color: #fcbccd;
   --accent-color-light: #f16084;
@@ -8,7 +8,7 @@
   --background-color3: #1e1e2e;
   --link-color: #85c1dc !important;
 }
-
+*/
 /* --- Nuke the Top Bar (Titlebar & Tabs) --- */
 
 #titlebar,
