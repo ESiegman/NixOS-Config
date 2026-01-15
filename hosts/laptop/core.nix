@@ -26,10 +26,17 @@ in {
   };
 
   home-manager.users.eren = {
-    programs.kitty.package = pkgs.writeShellScriptBin "kitty" ''
-      #!/bin/sh
-      exec nvidia-offload ${pkgs.kitty}/bin/kitty "$@"
-    '';
+    programs.kitty.package = pkgs.symlinkJoin {
+      name = "kitty-wrapped-nvidia";
+      paths = [ pkgs.kitty ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/kitty \
+          --run "export __NV_PRIME_RENDER_OFFLOAD=1" \
+          --run "export __GLX_VENDOR_LIBRARY_NAME=nvidia" \
+          --run "export VK_ICD_FILENAMES=/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json"
+      '';
+    };
   };
 
   systemd.user.services.libinput-gestures = {
