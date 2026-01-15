@@ -3,6 +3,7 @@
   programs.kitty = {
     enable = true;
     settings = {
+      linux_display_server = "wayland";
       background_opacity = "0.9";
 
       sync_to_monitor = "no";
