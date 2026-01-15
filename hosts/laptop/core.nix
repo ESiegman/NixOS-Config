@@ -25,6 +25,13 @@ in {
     thermald.enable = true;
   };
 
+  home-manager.users.eren = {
+    home.sessionVariables = {
+      __NV_PRIME_RENDER_OFFLOAD = "0";
+      __GLX_VENDOR_LIBRARY_NAME = "mesa";
+    };
+  };
+
   systemd.user.services.libinput-gestures = {
     description = "Libinput Gestures";
     wantedBy = [ "graphical-session.target" ];

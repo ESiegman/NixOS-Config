@@ -68,27 +68,28 @@ function nup {
   if [ ! -d "$config_dir" ]; then
     echo "Error: Configuration directory '$config_dir' not found."
     return 1
-
   fi
 
-
-  cd "$config_dir" || return
+  # Use PAGER=cat and builtin cd to stay automated
+  PAGER=cat builtin cd "$config_dir" || return
 
   echo "Checking for remote changes on GitHub..."
 
-  git fetch origin main
-  local $git_status=$(git status -uno)
+  PAGER=cat git fetch origin main --quiet
+
+  # Renamed variable to avoid 'read-only' error
+  local git_status=$(git status -uno)
 
   if [[ $git_status == *"Your branch is behind"* ]]; then
     echo "New changes found on GitHub. Pulling..."
 
-    if git pull origin main --rebase; then
+    if PAGER=cat git pull origin main --rebase --quiet; then
       echo "Successfully updated local files from GitHub."
       echo "----------------------------------------------------"
-      nswitch
+      PAGER=cat nswitch
     else
       echo "ERROR: Conflict detected during pull. Please resolve manually."
-      cd "$starting_dir"
+      builtin cd "$starting_dir"
       return 1
     fi
   else
@@ -96,12 +97,12 @@ function nup {
     echo -n "Would you like to run nswitch anyway? (y/N): "
     read -r response
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-      nswitch
+      PAGER=cat nswitch
     fi
   fi
 
-  cd "$starting_dir"
-} 
+  builtin cd "$starting_dir"
+}
 
 function nsearch {
   echo "--- Packages ---"
