@@ -2,21 +2,6 @@
 { pkgs, osConfig, ... }: {
   programs.kitty = {
     enable = true;
-    package = let
-      isLaptop = (osConfig.networking.hostName or "") == "laptop";
-      baseKitty = pkgs.kitty;
-    in if isLaptop then
-      pkgs.writeShellScriptBin "kitty" ''
-        #!/bin/sh
-        export __NV_PRIME_RENDER_OFFLOAD=1
-        export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-        export __GLX_VENDOR_LIBRARY_NAME=nvidia
-        export __VK_LAYER_NV_optimus=NVIDIA_only
-        exec nvidia-offload ${baseKitty}/bin/kitty "$@"
-      ''
-    else
-      baseKitty;
-
     settings = {
       background_opacity = "0.9";
 
@@ -42,4 +27,14 @@
       linux_display_server = "wayland";
     };
   };
+
+  home.file.".local/bin/kitty" = {
+    executable = true;
+    text = ''
+      #!/bin/sh
+      exec nvidia-offload ${pkgs.kitty}/bin/kitty "$@"
+    '';
+    enable = (osConfig.networking.hostName or "") == "laptop";
+  };
+  home.sessionPath = [ "$HOME/.local/bin" ];
 }
