@@ -1,10 +1,6 @@
 return {
 	{
 		"stevearc/conform.nvim",
-		dependencies = {
-			"williamboman/mason.nvim",
-			"zapling/mason-conform.nvim",
-		},
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
@@ -22,15 +18,13 @@ return {
 				yaml = { "prettierd", "prettier", stop_after_first = true },
 				markdown = { "prettierd", "prettier", stop_after_first = true },
 				astro = { "prettierd", "prettier", stop_after_first = true },
-				nix = { "nixfmt" },
+				nix = { "alejandra" },
 				sh = { "shfmt" },
 				bash = { "shfmt" },
 			},
 		},
 		config = function(_, opts)
 			require("conform").setup(opts)
-
-			require("mason-conform").setup()
 		end,
 	},
 }

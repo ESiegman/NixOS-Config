@@ -2,6 +2,7 @@
 { pkgs, inputs, ... }:
 let
   lspsAndLinters = with pkgs; [
+    # LSPs
     nixd
     nil
     lua-language-server
@@ -13,8 +14,11 @@ let
     alejandra
     stylua
     shfmt
-    black
+    python311Packages.isort
+    rustfmt
+    clang-tools
     prettierd
+    nodePackages.prettier
   ];
 
   coreDevUtils = with pkgs; [
