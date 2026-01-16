@@ -14,7 +14,6 @@ let
     alejandra
     stylua
     shfmt
-    python311Packages.isort
     rustfmt
     clang-tools
     prettierd
