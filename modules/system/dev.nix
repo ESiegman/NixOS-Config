@@ -21,6 +21,7 @@ let
     git
     gnumake
     gcc
+    cargo
     tree-sitter
     (inputs.nix-shell-gen.packages.${pkgs.system}.default)
   ];
