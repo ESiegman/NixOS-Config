@@ -1,3 +1,4 @@
+# modules/system/dev.nix
 { pkgs, inputs, ... }:
 let
   lspsAndLinters = with pkgs; [
@@ -7,6 +8,7 @@ let
     rust-analyzer
     bash-language-server
     pyright
+    llvmPackages.clang-unwrapped
 
     alejandra
     stylua
