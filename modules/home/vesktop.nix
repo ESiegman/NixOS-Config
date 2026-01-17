@@ -24,10 +24,10 @@
           ShowHiddenChannels = true;
           SilentTyping = true;
         };
-        #enabledThemes = ["Main.css"];
+        enabledThemes = ["Main.css"];
       };
       themes = {
-        "Main.css" = builtins.readFile ./../native/vesktop/theme.css;
+        "Main" = builtins.readFile ./../native/vesktop/theme.css;
       };
     };
   };
