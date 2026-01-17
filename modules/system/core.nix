@@ -1,12 +1,16 @@
 # modules/system/core.nix
-{ pkgs, user, ... }: {
+{
+  pkgs,
+  user,
+  ...
+}: {
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = ["root" "@wheel"];
       warn-dirty = false;
-      substituters = [ "https://cache.nixos.org/" ];
+      substituters = ["https://cache.nixos.org/"];
     };
     gc = {
       automatic = true;
@@ -20,7 +24,7 @@
     isNormalUser = true;
     home = "/home/eren";
     description = "Primary User";
-    openssh.authorizedKeys.keys = [ ];
+    openssh.authorizedKeys.keys = [];
     extraGroups = [
       "wheel"
       "networkmanager"
@@ -40,10 +44,10 @@
 
   networking = {
     networkmanager.enable = true;
-    firewall = { enable = true; };
+    firewall = {enable = true;};
   };
 
-  time = { timeZone = "America/New_York"; };
+  time = {timeZone = "America/New_York";};
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -66,6 +70,10 @@
       efi.canTouchEfiVariables = true;
     };
     kernel.sysctl."vm.swappiness" = 10;
+  };
+
+  environment = {
+    variables.XDG_RUNTIME_DIR = "/run/user/1000";
   };
 
   system.stateVersion = "25.05";
