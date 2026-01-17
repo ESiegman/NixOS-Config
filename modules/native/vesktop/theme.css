@@ -3,19 +3,19 @@
 @import url("https://clearvision.github.io/ClearVision-v7/vencord.css");
 
 :root {
-  --main-color: #d156c4;
-  --hover-color: #b53eb0;
+  --main-color: #d156c4; 
+  --hover-color: #b53eb0;  
   --success-color: #43b581;
   --danger-color: #982929;
 
-  --online-color: #43b581;
-  --idle-color: #faa61a;
+  --online-color: #43b581; 
+  --idle-color: #faa61a; 
   --dnd-color: #982929;
-  --streaming-color: #593695;
-  --offline-color: #808080;
+  --streaming-color: #593695; 
+  --offline-color: #808080; 
 
   --background-shading-percent: 80%;
-  --background-image: url(https://w.wallhaven.cc/full/39/wallhaven-39zxxd.jpg);
+  --background-image: url(https://r4.wallpaperflare.com/wallpaper/355/929/151/femboy-fate-apocrypha-astolfo-fate-apocrypha-digital-picture-in-picture-hd-wallpaper-039056f1529ffd82b6119f6319954a5e.jpg);
   --background-position: center;
   --background-size: cover;
   --background-attachment: fixed;
