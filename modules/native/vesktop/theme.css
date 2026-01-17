@@ -19,7 +19,7 @@
   --background-position: center;
   --background-size: cover;
   --background-attachment: fixed;
-  --background-filter: saturate(calc(var(--saturation-factor, 1) * 1.2)) blur(5px);
+  --background-filter: saturate(calc(var(--saturation-factor, 1) * 1)) blur(5px);
 
   --user-popout-image: var(--background-image);
   --user-popout-position: var(--background-position);
@@ -51,41 +51,41 @@
 }
 
 :is(.theme-light, .theme-dark .theme-light) {
-  --background-shading: rgba(255, 245, 250, 0.3);
-  --card-shading: rgba(255, 245, 250, 0.3);
-  --popout-shading: rgba(255, 245, 250, 0.7);
-  --modal-shading: rgba(255, 245, 250, 0.5);
-  --input-shading: rgba(60, 0, 60, 0.1);
-  --normal-text: #3c2a3c;
-  --muted-text: #7e6b7e;
+  --background-shading: rgba(255, 255, 255, 0.3);
+  --card-shading: rgba(255, 255, 255, 0.3);
+  --popout-shading: rgba(255, 255, 255, 0.7);
+  --modal-shading: rgba(255, 255, 255, 0.5);
+  --input-shading: rgba(0, 0, 0, 0.1);
+  --normal-text: #36363c;
+  --muted-text: #75757e;
 }
 
 :is(.theme-dark, .theme-light .theme-dark) {
-  --background-shading: rgba(20, 0, 30, 0.4);
-  --card-shading: rgba(15, 0, 20, 0.2);
-  --popout-shading: rgba(10, 0, 15, 0.6);
-  --modal-shading: rgba(15, 0, 20, 0.4);
-  --input-shading: rgba(255, 200, 255, 0.05);
-  --normal-text: #f0e6f0;
-  --muted-text: #b5aeb5;
+  --background-shading: rgba(0, 0, 0, 0.4);
+  --card-shading: rgba(0, 0, 0, 0.2);
+  --popout-shading: rgba(0, 0, 0, 0.6);
+  --modal-shading: rgba(0, 0, 0, 0.4);
+  --input-shading: rgba(255, 255, 255, 0.05);
+  --normal-text: #d8d8db;
+  --muted-text: #aeaeb4;
 }
 
 :is(.theme-darker, .theme-light .theme-darker) {
-  --background-shading: rgba(15, 0, 20, 0.6);
-  --card-shading: rgba(10, 0, 15, 0.3);
-  --popout-shading: rgba(10, 0, 15, 0.7);
-  --modal-shading: rgba(15, 0, 20, 0.5);
-  --input-shading: rgba(255, 200, 255, 0.05);
-  --normal-text: #fffaff;
-  --muted-text: #9c949c;
+  --background-shading: rgba(0, 0, 0, 0.6);
+  --card-shading: rgba(0, 0, 0, 0.3);
+  --popout-shading: rgba(0, 0, 0, 0.7);
+  --modal-shading: rgba(0, 0, 0, 0.5);
+  --input-shading: rgba(255, 255, 255, 0.05);
+  --normal-text: #fbfbfb;
+  --muted-text: #94949c;
 }
 
 :is(.theme-midnight, .theme-light .theme-midnight) {
-  --background-shading: rgba(10, 0, 10, 0.8);
-  --card-shading: rgba(5, 0, 5, 0.4);
-  --popout-shading: rgba(5, 0, 5, 0.8);
-  --modal-shading: rgba(10, 0, 10, 0.6);
-  --input-shading: rgba(255, 200, 255, 0.05);
-  --normal-text: #ede4ed;
-  --muted-text: #8e868e;
+  --background-shading: rgba(0, 0, 0, 0.8);
+  --card-shading: rgba(0, 0, 0, 0.4);
+  --popout-shading: rgba(0, 0, 0, 0.8);
+  --modal-shading: rgba(0, 0, 0, 0.6);
+  --input-shading: rgba(255, 255, 255, 0.05);
+  --normal-text: #dcdcde;
+  --muted-text: #86868e;
 }
