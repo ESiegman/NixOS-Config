@@ -27,7 +27,7 @@
         enabledThemes = ["Main.css"];
       };
       themes = {
-        Main = builtins.readFile ./../native/vesktop/theme.css;
+        "Main.css" = builtins.readFile ./../native/vesktop/theme.css;
       };
     };
   };
