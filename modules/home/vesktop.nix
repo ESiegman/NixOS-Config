@@ -23,6 +23,7 @@
           ShikiCodeblocks = true;
           ShowHiddenChannels = true;
           SilentTyping = true;
+          QuickReply = true;
         };
         enabledThemes = ["Main.css"];
       };
