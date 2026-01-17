@@ -19,7 +19,7 @@
   --background-position: center;
   --background-size: cover;
   --background-attachment: fixed;
-  --background-filter: saturate(calc(var(--saturation-factor, 1) * 1));
+  --background-filter: saturate(calc(var(--saturation-factor, 1) * 1)) blur(10px);
 
   --user-popout-image: var(--background-image);
   --user-popout-position: var(--background-position);
