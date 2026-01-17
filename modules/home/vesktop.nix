@@ -24,7 +24,7 @@
           ShowHiddenChannels = true;
           SilentTyping = true;
         };
-        enabledThemes = ["Main.css"];
+        enabledThemes = ["Main"];
       };
       themes = {
         "Main.css" = builtins.readFile ./../native/vesktop/theme.css;
