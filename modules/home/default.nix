@@ -42,5 +42,7 @@
   };
   services.gnome-keyring.enable = true;
 
+  systemd.user.enable = true;
+
   home.stateVersion = "25.05";
 }
