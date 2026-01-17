@@ -3,23 +3,24 @@
 @import url("https://clearvision.github.io/ClearVision-v7/vencord.css");
 
 :root {
-  --main-color: #d156c4; 
-  --hover-color: #b53eb0;  
-  --success-color: #43b581;
-  --danger-color: #982929;
+  --main-color: #e192ab; 
+  --hover-color: #c47b92;
+  
+  --success-color: #72d1d8;
+  --danger-color: #e57373;
 
-  --online-color: #43b581; 
-  --idle-color: #faa61a; 
-  --dnd-color: #982929;
-  --streaming-color: #593695; 
-  --offline-color: #808080; 
+  --online-color: #88d498;
+  --idle-color: #f9e090;
+  --dnd-color: #e57373;
+  --streaming-color: #9b84ee;
+  --offline-color: #808080;
 
   --background-shading-percent: 80%;
   --background-image: url(https://r4.wallpaperflare.com/wallpaper/355/929/151/femboy-fate-apocrypha-astolfo-fate-apocrypha-digital-picture-in-picture-hd-wallpaper-039056f1529ffd82b6119f6319954a5e.jpg);
   --background-position: center;
   --background-size: cover;
   --background-attachment: fixed;
-  --background-filter: saturate(calc(var(--saturation-factor, 1) * 1)) blur(5px);
+  --background-filter: saturate(calc(var(--saturation-factor, 1) * 1)) blur(4px);
 
   --user-popout-image: var(--background-image);
   --user-popout-position: var(--background-position);
@@ -51,41 +52,31 @@
 }
 
 :is(.theme-light, .theme-dark .theme-light) {
-  --background-shading: rgba(255, 255, 255, 0.3);
-  --card-shading: rgba(255, 255, 255, 0.3);
-  --popout-shading: rgba(255, 255, 255, 0.7);
-  --modal-shading: rgba(255, 255, 255, 0.5);
-  --input-shading: rgba(0, 0, 0, 0.1);
+  --background-shading: rgba(255, 255, 255, 0.25);
+  --card-shading: rgba(255, 255, 255, 0.25);
+  --popout-shading: rgba(255, 255, 255, 0.65);
+  --modal-shading: rgba(255, 255, 255, 0.45);
+  --input-shading: rgba(0, 0, 0, 0.08);
   --normal-text: #36363c;
   --muted-text: #75757e;
 }
 
 :is(.theme-dark, .theme-light .theme-dark) {
-  --background-shading: rgba(0, 0, 0, 0.4);
-  --card-shading: rgba(0, 0, 0, 0.2);
-  --popout-shading: rgba(0, 0, 0, 0.6);
-  --modal-shading: rgba(0, 0, 0, 0.4);
+  --background-shading: rgba(0, 0, 0, 0.45);
+  --card-shading: rgba(0, 0, 0, 0.25);
+  --popout-shading: rgba(0, 0, 0, 0.65);
+  --modal-shading: rgba(0, 0, 0, 0.45);
   --input-shading: rgba(255, 255, 255, 0.05);
-  --normal-text: #d8d8db;
-  --muted-text: #aeaeb4;
-}
-
-:is(.theme-darker, .theme-light .theme-darker) {
-  --background-shading: rgba(0, 0, 0, 0.6);
-  --card-shading: rgba(0, 0, 0, 0.3);
-  --popout-shading: rgba(0, 0, 0, 0.7);
-  --modal-shading: rgba(0, 0, 0, 0.5);
-  --input-shading: rgba(255, 255, 255, 0.05);
-  --normal-text: #fbfbfb;
-  --muted-text: #94949c;
+  --normal-text: #e0e0e3;
+  --muted-text: #b5b5ba;
 }
 
 :is(.theme-midnight, .theme-light .theme-midnight) {
-  --background-shading: rgba(0, 0, 0, 0.8);
+  --background-shading: rgba(10, 15, 25, 0.85);
   --card-shading: rgba(0, 0, 0, 0.4);
-  --popout-shading: rgba(0, 0, 0, 0.8);
-  --modal-shading: rgba(0, 0, 0, 0.6);
+  --popout-shading: rgba(10, 15, 25, 0.85);
+  --modal-shading: rgba(10, 15, 25, 0.65);
   --input-shading: rgba(255, 255, 255, 0.05);
-  --normal-text: #dcdcde;
-  --muted-text: #86868e;
+  --normal-text: #e1e1e3;
+  --muted-text: #8e8e96;
 }
