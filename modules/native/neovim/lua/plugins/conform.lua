@@ -21,6 +21,13 @@ return {
 				nix = { "alejandra" },
 				sh = { "shfmt" },
 				bash = { "shfmt" },
+				qml = { "qmlformat" },
+			},
+			formatters = {
+				qmlformat = {
+					args = { "-i", "$FILENAME" },
+					stdin = false,
+				},
 			},
 		},
 		config = function(_, opts)
