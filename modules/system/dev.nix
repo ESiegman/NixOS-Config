@@ -22,6 +22,7 @@
     clang-tools
     prettierd
     nodePackages.prettier
+    qt6.qtdeclarative.dev
   ];
 
   coreDevUtils = with pkgs; [
