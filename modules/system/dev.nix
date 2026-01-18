@@ -1,8 +1,10 @@
 # modules/system/dev.nix
-{ pkgs, inputs, ... }:
-let
-  lspsAndLinters = with pkgs; [
-    # LSPs
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  lsps = with pkgs; [
     nixd
     nil
     lua-language-server
@@ -10,7 +12,9 @@ let
     bash-language-server
     pyright
     llvmPackages.clang-unwrapped
+  ];
 
+  formatters = with pkgs; [
     alejandra
     stylua
     shfmt
@@ -28,23 +32,24 @@ let
     tree-sitter
     (inputs.nix-shell-gen.packages.${pkgs.system}.default)
   ];
-
 in {
-  environment.systemPackages = lspsAndLinters ++ coreDevUtils;
+  environment.systemPackages = lsps ++ formatters ++ coreDevUtils;
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc
-    zlib
-    fuse3
-    icu
-    nss
-    openssl
-    curl
-    expat
-    libxml2
-    glibc
-  ];
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc
+      zlib
+      fuse3
+      icu
+      nss
+      openssl
+      curl
+      expat
+      libxml2
+      glibc
+    ];
+  };
 
   documentation.dev.enable = true;
 }
