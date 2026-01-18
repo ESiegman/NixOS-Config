@@ -1,6 +1,9 @@
 # home/eren/stylix.nix
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   palette = config.stylix.base16Scheme;
   toRgba = hex: "rgba(${hex}FF)";
   mod = "SUPER";
@@ -10,15 +13,15 @@ in {
     enable = true;
     systemd.enable = true;
     settings = {
-
-      monitor = [ ", highrr, auto, 1" ", addreserved, 30, 0, 0, 0" ];
-      env = [ "XCURSOR_SIZE,24" ];
+      monitor = [", highrr, auto, 1" ", addreserved, 30, 0, 0, 0"];
+      env = ["XCURSOR_SIZE,24"];
 
       exec-once = [
         "QML_XHR_ALLOW_FILE_READ=1 qs"
         "swww-daemon"
         "swww img ${config.stylix.image}"
         "nm-applet"
+        "pkill nm-applet"
       ];
 
       general = {
@@ -28,8 +31,7 @@ in {
         layout = "dwindle";
         allow_tearing = true;
 
-        "col.active_border" =
-          "rgba(${palette.base0D}FF) rgba(${palette.base0C}FF) 45deg";
+        "col.active_border" = "rgba(${palette.base0D}FF) rgba(${palette.base0C}FF) 45deg";
         "col.inactive_border" = toRgba palette.base01;
       };
 
@@ -77,43 +79,44 @@ in {
       };
 
       "$mod" = "SUPER";
-      bind = [
-        "${mod}, C, killactive,"
-        "${mod}, T, fullscreen"
-        "${mod}, V, togglefloating,"
-        "${mod}, J, togglesplit,"
+      bind =
+        [
+          "${mod}, C, killactive,"
+          "${mod}, T, fullscreen"
+          "${mod}, V, togglefloating,"
+          "${mod}, J, togglesplit,"
 
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
-        ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
-        ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+          ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
+          ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
 
-        ", Print, exec, sh -c 'hyprshot -m region output --clipboard-only'"
-        "Shift, Print, exec, sh -c 'hyprshot -m window output --clipboard-only'"
+          ", Print, exec, sh -c 'hyprshot -m region output --clipboard-only'"
+          "Shift, Print, exec, sh -c 'hyprshot -m window output --clipboard-only'"
 
-        "${mod}, S, togglespecialworkspace, magic"
-        "${mod} SHIFT, S, movetoworkspace, special:magic"
+          "${mod}, S, togglespecialworkspace, magic"
+          "${mod} SHIFT, S, movetoworkspace, special:magic"
 
-        "${mod}, Q, exec, kitty"
-        "${mod}, E, exec, thunar"
-        "${mod}, F, exec, wofi --show drun"
-        "${mod}, N, exec, swaync-client -t -sw"
-        "${mod}, L, exec, hyprlock"
-        "${mod}, W, exec, wlogout"
-        "${mod}, B, exec, firefox"
-        "${mod} SHIFT, B, exec, chromium"
-        "${mod}, M, exec, spotify"
-        "${mod}, D, exec, vesktop"
-      ] ++ (builtins.concatLists (builtins.genList (i:
-        let ws = i + 1;
+          "${mod}, Q, exec, kitty"
+          "${mod}, E, exec, thunar"
+          "${mod}, F, exec, wofi --show drun"
+          "${mod}, N, exec, swaync-client -t -sw"
+          "${mod}, L, exec, hyprlock"
+          "${mod}, W, exec, wlogout"
+          "${mod}, B, exec, firefox"
+          "${mod} SHIFT, B, exec, chromium"
+          "${mod}, M, exec, spotify"
+          "${mod}, D, exec, vesktop"
+        ]
+        ++ (builtins.concatLists (builtins.genList (i: let
+          ws = i + 1;
         in [
           "$mod, code:1${toString i}, workspace, ${toString ws}"
           "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
         ]) 9));
 
-      bindm =
-        [ "${mod}, mouse:272, movewindow" "${mod}, mouse:273, resizewindow" ];
+      bindm = ["${mod}, mouse:272, movewindow" "${mod}, mouse:273, resizewindow"];
     };
   };
 }
