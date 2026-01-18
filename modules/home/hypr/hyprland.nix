@@ -60,11 +60,13 @@ in {
       windowrule = [
         "opacity 0.90 0.50, match:class ^(kitty)$"
 
-        "float on, match:class .*pavucontrol.*"
-        "float on, match:class .*blueman-manager.*"
-        "float on, match:class .*thunar.*"
+        "float on, size 1000 700, center on, match:class .*pavucontrol.*"
 
-        "float on, center on, size 600 400, match:class ^(nmtui-floating)$"
+        "float on, size 1000 700, center on, match:class .*blueman-manager.*"
+
+        "float on, size 1200 800, center on, match:class .*thunar.*"
+
+        "float on, size 900 600, center on, match:class ^(nmtui-floating)$"
       ];
 
       animations = {
