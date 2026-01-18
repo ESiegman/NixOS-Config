@@ -60,13 +60,15 @@ in {
       windowrulev2 = [
         "opacity 0.90 0.50, class:^(kitty)$"
 
-        "float, class:.*(pavucontrol).*"
-        "float, class:.*(blueman-manager).*"
-        "float, class:.*(thunar).*"
+        "float, class:^(org.pulseaudio.pavucontrol)$"
 
-        "float, title:^(nmtui-floating)$"
-        "center, title:^(nmtui-floating)$"
-        "size 600 400, title:^(nmtui-floating)$"
+        "float, class:^(\.blueman-manager-wrapped)$"
+
+        "float, class:^(nmtui-floating)$"
+        "center, class:^(nmtui-floating)$"
+        "size 600 400, class:^(nmtui-floating)$"
+
+        "float, class:^(thunar)$"
       ];
 
       animations = {
