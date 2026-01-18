@@ -73,9 +73,13 @@ in {
         enabled = true;
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
-          "windowsIn, 1, 7, myBezier, slidebottom"
+          "windows, 1, 7, myBezier"
 
-          "windowsOut, 1, 7, myBezier, slideright"
+          "windowsIn, 1, 7, myBezier, slide bottom"
+
+          "windowsOut, 1, 7, myBezier, slide right"
+
+          "windowsMove, 1, 7, myBezier"
 
           "border, 1, 10, default"
           "fade, 1, 7, default"
