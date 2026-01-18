@@ -64,6 +64,7 @@ in {
         "float, title:^(nmtui-floating)$"
         "center, title:^(nmtui-floating)$"
         "size 600 400, title:^(nmtui-floating)$"
+        "float, class:^(thunar)$"
       ];
 
       animations = {
@@ -110,11 +111,12 @@ in {
           "${mod}, D, exec, vesktop"
         ]
         ++ (builtins.concatLists (builtins.genList (i: let
-          ws = i + 1;
-        in [
-          "$mod, code:1${toString i}, workspace, ${toString ws}"
-          "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-        ]) 9));
+            ws = i + 1;
+          in [
+            "$mod, code:1${toString i}, workspace, ${toString ws}"
+            "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+          ])
+          9));
 
       bindm = ["${mod}, mouse:272, movewindow" "${mod}, mouse:273, resizewindow"];
     };
