@@ -16,7 +16,6 @@
         ./hypr/hyprlock.nix
         ./hypr/swaync.nix
         ./hypr/wofi.nix
-        ./quickshell.nix
       ]
       else if osConfig.networking.hostName == "laptop"
       then [./kde.nix]

@@ -1,6 +1,5 @@
 # hosts/desktop/apps.nix
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   gaming = with pkgs; [
     mangohud
     goverlay
@@ -20,6 +19,7 @@ let
     wlogout
     hyprshot
     base16-schemes
+    quickshell
   ];
 
   utils = with pkgs; [
@@ -34,7 +34,7 @@ let
     winetricks
   ];
 
-  thumbnailers = with pkgs; [ ffmpegthumbnailer poppler ];
+  thumbnailers = with pkgs; [ffmpegthumbnailer poppler];
 
   workstation = with pkgs; [
     pkgsRocm.blender
@@ -43,7 +43,6 @@ let
     gimp
     inkscape
   ];
-
 in {
   programs.gamemode.enable = true;
   programs.steam = {
@@ -52,6 +51,10 @@ in {
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
   };
-  environment.systemPackages = gaming ++ desktop-ui ++ utils ++ thumbnailers
+  environment.systemPackages =
+    gaming
+    ++ desktop-ui
+    ++ utils
+    ++ thumbnailers
     ++ workstation;
 }
