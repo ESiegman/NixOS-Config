@@ -15,7 +15,7 @@
         ./hypr/hyprland.nix
         ./hypr/hyprlock.nix
         ./hypr/swaync.nix
-        ./hypr/wofi.ni
+        ./hypr/wofi.nix
         ./quickshell.nix
       ]
       else if osConfig.networking.hostName == "laptop"
