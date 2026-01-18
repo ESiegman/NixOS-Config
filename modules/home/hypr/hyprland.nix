@@ -60,20 +60,18 @@ in {
       windowrulev2 = [
         "opacity 0.90 0.50, class:^(kitty)$"
 
-        "float, class:(pavucontrol)"
-        "float, initialClass:(pavucontrol)"
-        "float, initialTitle:(Volume Control)"
+        "float, class:.*(pavucontrol).*"
+        "float, initialClass:.*(pavucontrol).*"
 
-        "float, class:(blueman-manager)"
-        "float, initialClass:(blueman-manager)"
-        "float, initialTitle:(Bluetooth Devices)"
+        "float, class:.*(blueman-manager).*"
+        "float, initialClass:.*(blueman-manager).*"
 
-        "float, class:(nmtui-floating)"
-        "float, initialClass:(nmtui-floating)"
-        "float, initialTitle:(nmtui-floating)"
+        "float, class:^(nmtui-floating)$"
+        "center, class:^(nmtui-floating)$"
+        "size 600 400, class:^(nmtui-floating)$"
 
-        "float, class:(thunar)"
-        "float, initialClass:(thunar)"
+        "float, class:.*(thunar).*"
+        "float, initialClass:.*(thunar).*"
       ];
 
       animations = {
