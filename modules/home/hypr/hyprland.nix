@@ -57,22 +57,16 @@ in {
         };
       };
 
-      windowrule = [
-        "float,pavucontrol"
-        "float,blueman-manager"
-        "float,nmtui-floating"
-        "float,thunar"
-      ];
-
       windowrulev2 = [
         "opacity 0.90 0.50, class:^(kitty)$"
 
         "float, class:.*(pavucontrol).*"
         "float, class:.*(blueman-manager).*"
-        "float, class:.*(nmtui-floating).*"
-        "center, class:.*(nmtui-floating).*"
-        "size 600 400, class:.*(nmtui-floating).*"
         "float, class:.*(thunar).*"
+
+        "float, class:^(nmtui-floating)$"
+        "center, class:^(nmtui-floating)$"
+        "size 600 400, class:^(nmtui-floating)$"
       ];
 
       animations = {
