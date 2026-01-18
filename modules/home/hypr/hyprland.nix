@@ -1,4 +1,4 @@
-# home/eren/stylix.nix
+# modules/home/hypr/hyprland.nix
 {
   lib,
   config,
@@ -57,23 +57,22 @@ in {
         };
       };
 
+      windowrule = [
+        "float,pavucontrol"
+        "float,blueman-manager"
+        "float,nmtui-floating"
+        "float,thunar"
+      ];
+
       windowrulev2 = [
         "opacity 0.90 0.50, class:^(kitty)$"
 
-        "float, class:pavucontrol"
-        "float, initialClass:pavucontrol"
-        "float, initialTitle:Volume Control"
-
-        "float, class:blueman-manager"
-        "float, initialClass:blueman-manager"
-        "float, initialTitle:Bluetooth Devices"
-
-        "float, class:nmtui-floating"
-        "center, class:nmtui-floating"
-        "size 600 400, class:nmtui-floating"
-
-        "float, class:thunar"
-        "float, initialClass:thunar"
+        "float, class:.*(pavucontrol).*"
+        "float, class:.*(blueman-manager).*"
+        "float, class:.*(nmtui-floating).*"
+        "center, class:.*(nmtui-floating).*"
+        "size 600 400, class:.*(nmtui-floating).*"
+        "float, class:.*(thunar).*"
       ];
 
       animations = {
