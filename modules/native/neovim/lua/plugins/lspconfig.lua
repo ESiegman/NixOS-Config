@@ -29,14 +29,10 @@ return {
 				lua_ls = {
 					settings = {
 						Lua = {
-							diagnostics = {
-								globals = { "vim" },
-							},
+							diagnostics = { globals = { "vim" } },
 							workspace = {
 								checkThirdParty = false,
-								library = {
-									vim.env.VIMRUNTIME,
-								},
+								library = { vim.env.VIMRUNTIME },
 							},
 						},
 					},
@@ -50,19 +46,21 @@ return {
 
 			vim.diagnostic.config({
 				underline = true,
-				virtual_text = {
-					spacing = 4,
-					prefix = "●",
-				},
+				virtual_text = { spacing = 4, prefix = "●" },
 				signs = true,
 				update_in_insert = false,
 				severity_sort = true,
 			})
 
-			local lspconfig = require("lspconfig")
-			for server_name, config in pairs(servers) do
-				config.capabilities = capabilities
-				lspconfig[server_name].setup(config)
+			for server_name, server_config in pairs(servers) do
+				local default_config = require("lspconfig.configs." .. server_name).default_config
+
+				local final_config = vim.tbl_deep_extend("force", default_config, server_config, {
+					capabilities = capabilities,
+				})
+
+				vim.lsp.config(server_name, final_config)
+				vim.lsp.enable(server_name)
 			end
 		end,
 	},
