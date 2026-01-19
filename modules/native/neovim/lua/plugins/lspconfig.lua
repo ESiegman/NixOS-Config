@@ -57,19 +57,18 @@ return {
 
 				local final_config = vim.tbl_deep_extend("force", config_mod.default_config, server_config, {
 					capabilities = capabilities,
-					root_dir = config_mod.default_config.root_dir or function(fname)
-						return vim.fs.dirname(
-							vim.fs.find(
-								{ ".git", "compile_commands.json", "flake.nix" },
-								{ path = fname, upward = true }
-							)[1]
-						) or vim.uv.cwd()
-					end,
 				})
 
 				vim.lsp.config(server_name, final_config)
 				vim.lsp.enable(server_name)
 			end
+
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "c", "cpp", "objc", "objcpp", "cuda" },
+				callback = function()
+					vim.lsp.enable("clangd")
+				end,
+			})
 		end,
 	},
 }
