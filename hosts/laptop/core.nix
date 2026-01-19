@@ -1,11 +1,11 @@
 # hosts/laptop/core.nix
-{ pkgs, ... }:
-let wallpaper = ../../modules/assets/images/wallpaper-laptop.jpg;
+{pkgs, ...}: let
+  wallpaper = ../../modules/assets/images/wallpaper-laptop.jpg;
 in {
   stylix.image = wallpaper;
 
   services = {
-    xserver = { enable = true; };
+    xserver = {enable = true;};
     desktopManager.plasma6.enable = true;
     libinput.enable = true;
     power-profiles-daemon.enable = false;
@@ -25,13 +25,18 @@ in {
     thermald.enable = true;
   };
 
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    enableRedistributableFirmware = true;
+  };
+
   systemd.user.services.libinput-gestures = {
     description = "Libinput Gestures";
-    wantedBy = [ "graphical-session.target" ];
+    wantedBy = ["graphical-session.target"];
     serviceConfig.ExecStart = "${pkgs.libinput-gestures}/bin/libinput-gestures";
   };
 
   programs.light.enable = true;
 
-  environment.systemPackages = with pkgs; [ acpi brightnessctl powertop ];
+  environment.systemPackages = with pkgs; [acpi brightnessctl powertop];
 }
