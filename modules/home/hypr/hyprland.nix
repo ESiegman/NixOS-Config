@@ -74,13 +74,9 @@ in {
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
           "windows, 1, 7, myBezier"
-
           "windowsIn, 1, 7, myBezier, slide bottom"
-
           "windowsOut, 1, 7, myBezier, slide right"
-
           "windowsMove, 1, 7, myBezier"
-
           "border, 1, 10, default"
           "fade, 1, 7, default"
           "workspaces, 1, 6, default"
@@ -117,6 +113,9 @@ in {
           "${mod} SHIFT, B, exec, chromium"
           "${mod}, M, exec, spotify"
           "${mod}, D, exec, vesktop"
+
+          "${mod}, 0, workspace, 0"
+          "${mod} SHIFT, 0, movetoworkspace, 0"
         ]
         ++ (builtins.concatLists (builtins.genList (i: let
             ws = i + 1;
