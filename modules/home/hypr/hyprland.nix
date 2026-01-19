@@ -114,8 +114,8 @@ in {
           "${mod}, M, exec, spotify"
           "${mod}, D, exec, vesktop"
 
-          "${mod}, 0, workspace, 0"
-          "${mod} SHIFT, 0, movetoworkspace, 0"
+          "${mod}, 0, workspace, 10"
+          "${mod} SHIFT, 0, movetoworkspace, 10"
         ]
         ++ (builtins.concatLists (builtins.genList (i: let
             ws = i + 1;
