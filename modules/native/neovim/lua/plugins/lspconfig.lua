@@ -20,6 +20,9 @@ return {
 						"--fallback-style=llvm",
 						"--query-driver=/usr/bin/g++,/usr/bin/gcc,g++,gcc",
 					},
+					capabilities = {
+						offsetEncoding = { "utf-16" },
+					},
 				},
 				rust_analyzer = {},
 				pyright = {},
