@@ -15,7 +15,7 @@ return {
 						"--completion-style=detailed",
 						"--function-arg-placeholders",
 						"--fallback-style=llvm",
-						"--query-driver=" .. (vim.env.CPLUS_INCLUDE_PATH or ""):gsub(":", ","),
+						"--query-driver=/nix/store/*",
 					},
 				},
 				nil_ls = {},
@@ -48,15 +48,23 @@ return {
 				underline = true,
 				virtual_text = { spacing = 4, prefix = "●" },
 				signs = true,
-				update_in_insert = false,
+				update_in_insert = true,
 				severity_sort = true,
 			})
 
 			for server_name, server_config in pairs(servers) do
-				local default_config = require("lspconfig.configs." .. server_name).default_config
+				local config_mod = require("lspconfig.configs." .. server_name)
 
-				local final_config = vim.tbl_deep_extend("force", default_config, server_config, {
+				local final_config = vim.tbl_deep_extend("force", config_mod.default_config, server_config, {
 					capabilities = capabilities,
+					root_dir = config_mod.default_config.root_dir or function(fname)
+						return vim.fs.dirname(
+							vim.fs.find(
+								{ ".git", "compile_commands.json", "flake.nix" },
+								{ path = fname, upward = true }
+							)[1]
+						) or vim.uv.cwd()
+					end,
 				})
 
 				vim.lsp.config(server_name, final_config)
