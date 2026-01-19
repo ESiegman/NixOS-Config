@@ -14,12 +14,12 @@ return {
 			cmake_executable = "cmake",
 		},
 		keys = {
-			{ "<leader>bc", "<cmd>CMakeConfigure<cr>", desc = "CMake: Configure" },
-			{ "<leader>bb", "<cmd>CMakeBuild<cr>", desc = "CMake: Build" },
-			{ "<leader>br", "<cmd>CMakeRun<cr>", desc = "CMake: Run Executable" },
-			{ "<leader>bt", "<cmd>CMakeTest<cr>", desc = "CMake: Run Tests (CTest)" },
-			{ "<leader>bB", "<cmd>CMakeClean<cr>", desc = "CMake: Clean Build" },
-			{ "<leader>bv", "<cmd>CMakeView<cr>", desc = "CMake: View Target/Preset" },
+			{ "<leader>lc", "<cmd>CMakeConfigure<cr>", desc = "CMake: Configure" },
+			{ "<leader>lb", "<cmd>CMakeBuild<cr>", desc = "CMake: Build" },
+			{ "<leader>lr", "<cmd>CMakeRun<cr>", desc = "CMake: Run Executable" },
+			{ "<leader>lt", "<cmd>CMakeTest<cr>", desc = "CMake: Run Tests (CTest)" },
+			{ "<leader>lB", "<cmd>CMakeClean<cr>", desc = "CMake: Clean Build" },
+			{ "<leader>lv", "<cmd>CMakeView<cr>", desc = "CMake: View Target/Preset" },
 		},
 	},
 }

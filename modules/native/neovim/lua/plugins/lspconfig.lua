@@ -9,7 +9,18 @@ return {
 		},
 		opts = {
 			servers = {
-				clangd = {},
+				clangd = {
+					cmd = {
+						"clangd",
+						"--background-index",
+						"--clang-tidy",
+						"--header-insertion=iwyu",
+						"--completion-style=detailed",
+						"--function-arg-placeholders",
+						"--fallback-style=llvm",
+						"--query-driver=/usr/bin/g++,/usr/bin/gcc,g++,gcc",
+					},
+				},
 				rust_analyzer = {},
 				pyright = {},
 				ts_ls = {},

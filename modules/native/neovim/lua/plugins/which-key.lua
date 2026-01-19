@@ -1,4 +1,5 @@
 return {
+
 	"folke/which-key.nvim",
 	event = "VeryLazy",
 
@@ -29,11 +30,12 @@ return {
 			{ "<leader>d", group = "[D]ebug" },
 			{ "<leader>f", group = "[F]ile" },
 			{ "<leader>h", group = "[H]ex" },
+			{ "<leader>l", group = "[L] CMake" },
 			{ "<leader>m", group = "[M]usic" },
 			{ "<leader>o", group = "[O]verseer" },
 			{ "<leader>p", group = "[P]erf" },
 			{ "<leader>s", group = "[S]earch" },
-			{ "<leader>t", group = "[Telescope]" },
+			{ "<leader>t", group = "[T]erminal" },
 		}
 
 		wk.add(mappings, { mode = "n" })
