@@ -1,25 +1,18 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		version = "^0.11",
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"saghen/blink.cmp",
-		},
-		opts = {
-			servers = {
+		dependencies = { "saghen/blink.cmp" },
+		config = function()
+			local servers = {
 				clangd = {
 					cmd = {
 						"clangd",
 						"--background-index",
 						"--clang-tidy",
 						"--header-insertion=iwyu",
-						"--completion-style=detailed",
-						"--function-arg-placeholders",
-						"--fallback-style=llvm",
 						"--query-driver=" .. (vim.env.CPLUS_INCLUDE_PATH or ""):gsub(":", ","),
-					},
-					capabilities = {
-						offsetEncoding = { "utf-16" },
 					},
 				},
 				nil_ls = {},
@@ -32,20 +25,25 @@ return {
 				astro = {},
 				lua_ls = {
 					settings = {
-						Lua = {
-							diagnostics = { globals = { "vim" } },
-						},
+						Lua = { diagnostics = { globals = { "vim" } } },
 					},
 				},
 				bashls = {},
 				yamlls = {},
 				marksman = {},
-			},
-		},
-		config = function(_, opts)
-			local lspconfig = require("lspconfig")
+			}
 
-			for server_name, server_opts in pairs(opts.servers) do
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+			for server_name, config in pairs(servers) do
+				local default_config = require("lspconfig.configs." .. server_name).default_config
+
+				local final_config = vim.tbl_deep_extend("force", default_config, config, {
+					capabilities = capabilities,
+				})
+
+				vim.lsp.config(server_name, final_config)
+
 				local binary = server_name
 				if server_name == "nil_ls" then
 					binary = "nil"
@@ -58,8 +56,7 @@ return {
 				end
 
 				if vim.fn.executable(binary) == 1 then
-					server_opts.capabilities = require("blink.cmp").get_lsp_capabilities(server_opts.capabilities)
-					lspconfig[server_name].setup(server_opts)
+					vim.lsp.enable(server_name)
 				end
 			end
 		end,
