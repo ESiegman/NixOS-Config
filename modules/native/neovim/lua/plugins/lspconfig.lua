@@ -12,6 +12,9 @@ return {
 						"--background-index",
 						"--clang-tidy",
 						"--header-insertion=iwyu",
+						"--completion-style=detailed",
+						"--function-arg-placeholders",
+						"--fallback-style=llvm",
 						"--query-driver=" .. (vim.env.CPLUS_INCLUDE_PATH or ""):gsub(":", ","),
 					},
 				},
@@ -25,7 +28,17 @@ return {
 				astro = {},
 				lua_ls = {
 					settings = {
-						Lua = { diagnostics = { globals = { "vim" } } },
+						Lua = {
+							diagnostics = {
+								globals = { "vim" },
+							},
+							workspace = {
+								checkThirdParty = false,
+								library = {
+									vim.env.VIMRUNTIME,
+								},
+							},
+						},
 					},
 				},
 				bashls = {},
@@ -35,29 +48,21 @@ return {
 
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+			vim.diagnostic.config({
+				underline = true,
+				virtual_text = {
+					spacing = 4,
+					prefix = "●",
+				},
+				signs = true,
+				update_in_insert = false,
+				severity_sort = true,
+			})
+
+			local lspconfig = require("lspconfig")
 			for server_name, config in pairs(servers) do
-				local default_config = require("lspconfig.configs." .. server_name).default_config
-
-				local final_config = vim.tbl_deep_extend("force", default_config, config, {
-					capabilities = capabilities,
-				})
-
-				vim.lsp.config(server_name, final_config)
-
-				local binary = server_name
-				if server_name == "nil_ls" then
-					binary = "nil"
-				end
-				if server_name == "ts_ls" then
-					binary = "typescript-language-server"
-				end
-				if server_name == "lua_ls" then
-					binary = "lua-language-server"
-				end
-
-				if vim.fn.executable(binary) == 1 then
-					vim.lsp.enable(server_name)
-				end
+				config.capabilities = capabilities
+				lspconfig[server_name].setup(config)
 			end
 		end,
 	},
