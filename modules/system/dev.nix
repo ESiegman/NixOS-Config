@@ -32,6 +32,7 @@
     cargo
     tree-sitter
     (inputs.nix-shell-gen.packages.${pkgs.system}.default)
+    (inputs.cpp-cli-tool.packages.${pkgs.system}.default)
   ];
 in {
   environment.systemPackages = lsps ++ formatters ++ coreDevUtils;

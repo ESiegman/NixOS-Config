@@ -101,6 +101,24 @@
         "type": "github"
       }
     },
+    "cpp-cli-tool": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1768885843,
+        "narHash": "sha256-5XpjbskBSf7OqoNKbUu/ZFBUL5PO1hq5h4V0kSPD474=",
+        "owner": "ESiegman",
+        "repo": "CppCLITool",
+        "rev": "25800e7fa7e3fa9fc5119150c57ae19d6ee77e2c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ESiegman",
+        "repo": "CppCLITool",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1760924934,
@@ -589,7 +607,7 @@
       "inputs": {
         "crane": "crane",
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1761197922,
@@ -623,6 +641,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1768564909,
+        "narHash": "sha256-Kell/SpJYVkHWMvnhqJz/8DqQg2b6PguxVWOuadbHCc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e4bae1bd10c9c57b2cf517953ab70060a828ee6f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1761114652,
         "narHash": "sha256-f/QCJM/YhrV/lavyCVz8iU3rlZun6d+dAiC3H+CDle4=",
         "owner": "NixOS",
@@ -637,7 +671,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1768564909,
         "narHash": "sha256-Kell/SpJYVkHWMvnhqJz/8DqQg2b6PguxVWOuadbHCc=",
@@ -726,11 +760,12 @@
     },
     "root": {
       "inputs": {
+        "cpp-cli-tool": "cpp-cli-tool",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nix-shell-gen": "nix-shell-gen",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "plasma-manager": "plasma-manager",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix"
