@@ -61,6 +61,39 @@ function nswitch {
   cd "$starting_dir"
 }
 
+function nflup {
+  local config_dir="$HOME/NixOS-Config"
+  local starting_dir=$(pwd)
+
+  if [ ! -d "$config_dir" ]; then
+    echo "Error: Configuration directory '$config_dir' not found."
+    return 1
+  fi
+
+  cd "$config_dir" || return
+
+  echo "Updating Nix flake lockfile..."
+  if nix flake update; then
+    echo "----------------------------------------------------"
+    echo "SUCCESS: flake.lock updated."
+    
+    echo -n "Would you like to rebuild and switch now? (y/N): "
+    read -r response
+    
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+      nswitch
+    else
+      echo "Update complete. Remember to commit and switch later."
+    fi
+  else
+    echo "ERROR: Failed to update flake."
+    cd "$starting_dir"
+    return 1
+  fi
+
+  cd "$starting_dir"
+}
+
 function nup {
   local config_dir="$HOME/NixOS-Config"
   local starting_dir=$(pwd)
