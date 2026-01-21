@@ -1,6 +1,9 @@
 # modules/system/apps.nix
-{ inputs, pkgs, ... }:
-let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   spicePkgs =
     inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   terminal = with pkgs; [
@@ -17,8 +20,8 @@ let
     ripgrep
     fd
   ];
-  media = with pkgs; [ vlc pavucontrol zathura ];
-  productivity = with pkgs; [ libreoffice kicad ];
+  media = with pkgs; [vlc pavucontrol zathura];
+  productivity = with pkgs; [libreoffice kicad orca-slicer];
 in {
   programs = {
     spicetify = {
