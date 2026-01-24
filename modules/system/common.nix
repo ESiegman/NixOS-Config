@@ -71,4 +71,6 @@
     polkit.enable = true;
     rtkit.enable = true;
   };
+
+  boot.blacklistedKernelModules = ["wacom" "hid_wacom"];
 }
