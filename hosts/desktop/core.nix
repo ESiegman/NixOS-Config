@@ -1,13 +1,17 @@
 # hosts/desktop/core.nix
-{ lib, pkgs, ... }:
-let wallpaper = ../../modules/assets/images/wallpaper-desktop.png;
+{
+  lib,
+  pkgs,
+  ...
+}: let
+  wallpaper = ../../modules/assets/images/wallpaper-desktop.png;
 in {
   stylix.image = wallpaper;
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
 
   services = {
-    xserver.videoDrivers = [ "amdgpu" ];
+    xserver.videoDrivers = ["amdgpu"];
     openssh = {
       enable = true;
       # settings.PasswordAuthentication = false;
@@ -34,7 +38,7 @@ in {
       xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
     ];
-    config = { common = { default = [ "hyprland" ]; }; };
+    config = {common = {default = ["hyprland"];};};
     #   mimeApps.defaultApplications = {
     #     "text/plain" = "nvim.desktop";
     #     "application/pdf" = "zathura.desktop";
@@ -58,5 +62,14 @@ in {
       obs-vkcapture
       obs-pipewire-audio-capture
     ];
+  };
+  boot.loader = {
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+      useOSProber = true;
+    };
+    efi.canTouchEfiVariables = true;
   };
 }

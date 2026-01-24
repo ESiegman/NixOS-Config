@@ -36,6 +36,14 @@ in {
     serviceConfig.ExecStart = "${pkgs.libinput-gestures}/bin/libinput-gestures";
   };
 
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernel.sysctl."vm.swappiness" = 10;
+  };
+
   programs.light.enable = true;
 
   environment.systemPackages = with pkgs; [acpi brightnessctl powertop];

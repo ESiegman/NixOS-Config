@@ -64,14 +64,6 @@
     };
   };
 
-  boot = {
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
-    kernel.sysctl."vm.swappiness" = 10;
-  };
-
   environment = {
     variables.XDG_RUNTIME_DIR = "/run/user/1000";
   };
