@@ -1,5 +1,5 @@
 # modules/system/common.nix
-{ pkgs, ... }: {
+{pkgs, ...}: {
   services = {
     udev = {
       enable = true;
@@ -30,15 +30,17 @@
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
-      extraPackages = [ pkgs.sddm-astronaut ];
+      extraPackages = [pkgs.sddm-astronaut];
       theme = "sddm-astronaut-theme";
     };
   };
 
-  swapDevices = [{
-    device = "/swapfile";
-    size = 32 * 1024;
-  }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 32 * 1024;
+    }
+  ];
 
   systemd.services.systemd-modules-load.enable = true;
   hardware = {
@@ -59,6 +61,10 @@
       powerOnBoot = true;
       settings.General.Experimental = true;
     };
+    opentabletdriver = {
+      enable = true;
+      daemon.enable = true;
+    };
   };
 
   security = {
@@ -66,4 +72,3 @@
     rtkit.enable = true;
   };
 }
-
