@@ -34,6 +34,7 @@
       "lp"
       "scanner"
       "input"
+      "uinput"
       "dialout"
       "docker"
       "render"

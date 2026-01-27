@@ -97,8 +97,8 @@ in {
           ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
           ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
 
-          ", Print, exec, sh -c 'hyprshot -m region output --clipboard-only'"
-          "Shift, Print, exec, sh -c 'hyprshot -m window output --clipboard-only'"
+          ", F2, exec, sh -c 'hyprshot -m region output --clipboard-only'"
+          "Shift, F2, exec, sh -c 'hyprshot -m window output --clipboard-only'"
 
           "${mod}, S, togglespecialworkspace, magic"
           "${mod} SHIFT, S, movetoworkspace, special:magic"
