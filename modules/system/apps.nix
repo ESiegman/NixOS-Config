@@ -19,6 +19,7 @@
     btop
     ripgrep
     fd
+    usbutils
   ];
   media = with pkgs; [vlc pavucontrol zathura];
   productivity = with pkgs; [libreoffice kicad orca-slicer];
