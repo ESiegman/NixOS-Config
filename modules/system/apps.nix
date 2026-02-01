@@ -22,7 +22,7 @@
     usbutils
   ];
   media = with pkgs; [vlc pavucontrol zathura];
-  productivity = with pkgs; [libreoffice kicad orca-slicer];
+  productivity = with pkgs; [libreoffice kicad orca-slicer krita];
 in {
   programs = {
     spicetify = {
