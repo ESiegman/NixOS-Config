@@ -72,5 +72,10 @@
     rtkit.enable = true;
   };
 
-  boot.blacklistedKernelModules = ["wacom" "hid_wacom" "hid_uclogic"];
+  boot.blacklistedKernelModules = [
+    "wacom"
+    "hid_wacom"
+    "hid_uclogic"
+    "uclogic"
+  ];
 }
