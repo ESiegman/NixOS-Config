@@ -6,6 +6,15 @@
 }: let
   spicePkgs =
     inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  rnote-wrapped = pkgs.symlinkJoin {
+    name = "rnote";
+    paths = [pkgs.rnote];
+    buildInputs = [pkgs.makeWrapper];
+    postBuild = ''
+      wrapProgram $out/bin/rnote \
+        --set GDK_BACKEND x11
+    '';
+  };
   terminal = with pkgs; [
     kitty
     wget
@@ -22,7 +31,7 @@
     usbutils
   ];
   media = with pkgs; [vlc pavucontrol zathura];
-  productivity = with pkgs; [libreoffice kicad orca-slicer krita rnote];
+  productivity = with pkgs; [libreoffice kicad orca-slicer krita rnote-wrapped];
 in {
   programs = {
     spicetify = {
