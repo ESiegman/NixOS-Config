@@ -26,26 +26,23 @@ function nswitch {
 
   cd "$config_dir" || return
 
-  if ! git diff --quiet HEAD; then
-    echo "Changes detected. Creating a temporary commit..."
-    local timestamp=$(date "+%Y-%m-%d %H:%M:%S")
-    git add .
-    git commit -m "rebuild: $timestamp"
-  fi
-
   echo "Building NixOS for host: $host..."
   if sudo nixos-rebuild switch --flake ".#$host"; then
     echo "----------------------------------------------------"
     echo "SUCCESS: System updated."
     
-    git add .
-    git commit --amend --no-edit > /dev/null
+    if ! git diff --quiet HEAD || [ -n "$(git status --short)" ]; then
+      local timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+      git add .
+      git commit -m "rebuild: $timestamp"
+    fi
 
     echo -n "Would you like to push these changes to GitHub? (y/N): "
     read -r response
     
     if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
       echo "Pushing to remote..."
+      git pull --rebase origin main
       git push origin main 
     else
       echo "Push skipped. Changes remain in your local Git history."
