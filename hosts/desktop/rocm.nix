@@ -17,7 +17,7 @@
       ROC_ENABLE_PRE_VEGA = "1";
       HIP_PLATFORM = "amd";
     };
-    systemPackages = with pkgs; [radeontop amdgpu_top];
+    systemPackages = with pkgs; [radeontop amdgpu_top lact];
   };
 
   systemd = {
