@@ -31,6 +31,15 @@ in {
         thunar-volman
       ];
     };
+    obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-vaapi
+        obs-vkcapture
+        obs-pipewire-audio-capture
+      ];
+    };
   };
   xdg.portal = {
     enable = true;
@@ -54,23 +63,20 @@ in {
       VIRTUAL_ENV_DISABLE_PROMPT = "1";
     };
   };
-  programs.obs-studio = {
-    enable = true;
-    enableVirtualCamera = true;
-    plugins = with pkgs.obs-studio-plugins; [
-      obs-vaapi
-      obs-vkcapture
-      obs-pipewire-audio-capture
-    ];
-  };
-  boot.loader = {
-    systemd-boot.enable = false;
-    grub = {
-      enable = true;
-      device = "nodev";
-      efiSupport = true;
-      useOSProber = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = false;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+        useOSProber = true;
+      };
+      efi.canTouchEfiVariables = true;
     };
-    efi.canTouchEfiVariables = true;
+    kernelParams = [
+      "amdgpu.ppfeaturemask=0xffffffff"
+      "amd_pstate=active"
+    ];
   };
 }
