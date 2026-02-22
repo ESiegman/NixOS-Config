@@ -29,6 +29,7 @@
     ripgrep
     fd
     usbutils
+    lazygit
   ];
   media = with pkgs; [vlc pavucontrol zathura];
   productivity = with pkgs; [libreoffice kicad orca-slicer krita rnote-wrapped];

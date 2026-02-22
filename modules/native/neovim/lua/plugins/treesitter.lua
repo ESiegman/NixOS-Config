@@ -17,6 +17,7 @@ return {
 				"markdown",
 				"markdown_inline",
 				"regex",
+				"nix",
 			}
 
 			pcall(require("nvim-treesitter").install, parsers)
