@@ -1,7 +1,9 @@
+-- lua/plugins/markview.lua
 return {
-	{
-		"OXY2DEV/markview.nvim",
-		lazy = false,
-		dependencies = { "saghen/blink.cmp" },
+	"OXY2DEV/markview.nvim",
+	ft = "markdown",
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter",
+		"nvim-tree/nvim-web-devicons",
 	},
 }

@@ -1,3 +1,4 @@
+-- init.lua
 local lib = require("lib")
 
 lib.setup({
@@ -23,9 +24,11 @@ lib.setup({
 	autocmds = {
 		{
 			event = "BufWritePre",
-			desc = "Formate Buffer on Save",
 			callback = function(args)
-				require("conform").format({ bufnr = args.buf })
+				local status_ok, conform = pcall(require, "conform")
+				if status_ok then
+					conform.format({ bufnr = args.buf })
+				end
 			end,
 		},
 	},

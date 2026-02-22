@@ -1,3 +1,4 @@
+-- lua/plugins/lspconfig.lua
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -5,22 +6,6 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "saghen/blink.cmp" },
 		config = function()
-			local servers = {
-				"clangd",
-				"lua_ls",
-				"nil_ls",
-				"rust_analyzer",
-				"pyright",
-				"ts_ls",
-				"html",
-				"cssls",
-				"jsonls",
-				"astro",
-				"bashls",
-				"yamlls",
-				"marksman",
-			}
-
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			vim.diagnostic.config({
@@ -31,19 +16,32 @@ return {
 				severity_sort = true,
 			})
 
-			for _, name in ipairs(servers) do
-				vim.lsp.config(name, {
-					capabilities = capabilities,
-					on_new_config = name == "clangd" and function(new_config)
-						new_config.cmd = {
-							"clangd",
-							"--background-index",
-							"--clang-tidy",
-							"--header-insertion=iwyu",
-							"--query-driver=/nix/store/*",
-						}
-					end or nil,
-				})
+			local servers = {
+				bashls = {},
+				pyright = {},
+				clangd = {
+					cmd = {
+						"clangd",
+						"--background-index",
+						"--clang-tidy",
+						"--header-insertion=iwyu",
+					},
+				},
+				lua_ls = {
+					settings = {
+						Lua = {
+							diagnostics = {
+								globals = { "vim" },
+							},
+						},
+					},
+				},
+			}
+
+			for name, opts in pairs(servers) do
+				opts.capabilities = capabilities
+
+				vim.lsp.config(name, opts)
 
 				vim.lsp.enable(name)
 			end
