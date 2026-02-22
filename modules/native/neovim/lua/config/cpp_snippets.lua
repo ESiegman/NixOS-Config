@@ -214,12 +214,12 @@ for (size_t {} = 0; {} < {}; {} += 8) {{
     {}
 }}
 ]], {
-        i(1,"i"),
+        i(1, "i"),
         i(1),
-        i(2,"N"),
+        i(2, "N"),
         i(1),
-        i(3,"vec"),
-        i(4,"data"),
+        i(3, "vec"),
+        i(4, "data"),
         i(1),
         i(0)
     })),
@@ -227,26 +227,26 @@ for (size_t {} = 0; {} < {}; {} += 8) {{
     s("avxadd", fmt([[
 __m256 {} = _mm256_add_ps({}, {});
 ]], {
-        i(1,"result"),
-        i(2,"a"),
-        i(3,"b")
+        i(1, "result"),
+        i(2, "a"),
+        i(3, "b")
     })),
 
     s("avxfma", fmt([[
 __m256 {} = _mm256_fmadd_ps({}, {}, {});
 ]], {
-        i(1,"result"),
-        i(2,"a"),
-        i(3,"b"),
-        i(4,"c")
+        i(1, "result"),
+        i(2, "a"),
+        i(3, "b"),
+        i(4, "c")
     })),
 
     s("avxstore", fmt([[
 _mm256_storeu_ps(&{}[{}], {});
 ]], {
-        i(1,"data"),
-        i(2,"i"),
-        i(3,"vec")
+        i(1, "data"),
+        i(2, "i"),
+        i(3, "vec")
     })),
 
     s("avxhsum", fmt([[
@@ -260,41 +260,41 @@ float horizontal_sum(__m256 v) {{
     sums = _mm_add_ss(sums, shuf);
     return _mm_cvtss_f32(sums);
 }}
-]], {}),
+]], {})),
 
     s("prefetch", fmt([[
 _mm_prefetch((const char*)(&{}[{}]), _MM_HINT_T0);
 ]], {
-        i(1,"data"),
-        i(2,"i")
+        i(1, "data"),
+        i(2, "i")
     })),
 
     s("alignedalloc", fmt([[
 {}* {} = static_cast<{}*>(std::aligned_alloc({}, {}));
 ]], {
-        i(1,"float"),
-        i(2,"ptr"),
+        i(1, "float"),
+        i(2, "ptr"),
         i(1),
-        i(3,"32"),
-        i(4,"size")
+        i(3, "32"),
+        i(4, "size")
     })),
 
     s("avxmaskload", fmt([[
 __m256 {} = _mm256_maskload_ps(&{}[{}], {});
 ]], {
-        i(1,"vec"),
-        i(2,"data"),
-        i(3,"i"),
-        i(4,"mask")
+        i(1, "vec"),
+        i(2, "data"),
+        i(3, "i"),
+        i(4, "mask")
     })),
 
     s("avxmaskstore", fmt([[
 _mm256_maskstore_ps(&{}[{}], {}, {});
 ]], {
-        i(1,"data"),
-        i(2,"i"),
-        i(3,"mask"),
-        i(4,"vec")
+        i(1, "data"),
+        i(2, "i"),
+        i(3, "mask"),
+        i(4, "vec")
     })),
 
     s("avx512loop", fmt([[
@@ -303,12 +303,12 @@ for (size_t {} = 0; {} < {}; {} += 16) {{
     {}
 }}
 ]], {
-        i(1,"i"),
+        i(1, "i"),
         i(1),
-        i(2,"N"),
+        i(2, "N"),
         i(1),
-        i(3,"vec"),
-        i(4,"data"),
+        i(3, "vec"),
+        i(4, "data"),
         i(1),
         i(0)
     })),
@@ -319,10 +319,10 @@ for (int {} = 0; {} < {}; ++{}) {{
     {}
 }}
 ]], {
-        i(1,"4"),
-        i(2,"i"),
+        i(1, "4"),
+        i(2, "i"),
         i(2),
-        i(3,"N"),
+        i(3, "N"),
         i(2),
         i(0)
     })),
@@ -337,13 +337,13 @@ for (size_t {} = 0; {} < {}; {} += simd_t::size()) {{
     {}
 }}
 ]], {
-        i(1,"float"),
-        i(2,"i"),
+        i(1, "float"),
+        i(2, "i"),
         i(2),
-        i(3,"N"),
+        i(3, "N"),
         i(2),
-        i(4,"vec"),
-        i(5,"data"),
+        i(4, "vec"),
+        i(5, "data"),
         i(2),
         i(0)
     })),
@@ -360,9 +360,9 @@ __global__ void {}({}* {}) {{
     {}
 }}
 ]], {
-        i(1,"kernel"),
-        i(2,"float"),
-        i(3,"data"),
+        i(1, "kernel"),
+        i(2, "float"),
+        i(3, "data"),
         i(0)
     })),
 
@@ -373,29 +373,29 @@ dim3 grid(({} + block.x - 1) / block.x);
 hipLaunchKernelGGL({}, grid, block, 0, 0, {});
 hipDeviceSynchronize();
 ]], {
-        i(1,"256"),
-        i(2,"N"),
-        i(3,"kernel"),
-        i(4,"args")
+        i(1, "256"),
+        i(2, "N"),
+        i(3, "kernel"),
+        i(4, "args")
     })),
 
     s("hipmalloc", fmt([[
 {}* {};
 hipMalloc(&{}, {});
 ]], {
-        i(1,"float"),
-        i(2,"d_ptr"),
+        i(1, "float"),
+        i(2, "d_ptr"),
         i(2),
-        i(3,"size")
+        i(3, "size")
     })),
 
     s("hipcpy", fmt([[
 hipMemcpy({}, {}, {}, {});
 ]], {
-        i(1,"dst"),
-        i(2,"src"),
-        i(3,"size"),
-        i(4,"hipMemcpyHostToDevice")
+        i(1, "dst"),
+        i(2, "src"),
+        i(3, "size"),
+        i(4, "hipMemcpyHostToDevice")
     })),
 
     s("hipcheck", fmt([[
@@ -412,43 +412,43 @@ hipMemcpy({}, {}, {}, {});
 
     s("vec", fmt([[
 std::vector<{}> {};
-]], { i(1,"T"), i(2,"vec") })),
+]], { i(1, "T"), i(2, "vec") })),
 
     s("arr", fmt([[
 std::array<{}, {}> {};
-]], { i(1,"T"), i(2,"N"), i(3,"arr") })),
+]], { i(1, "T"), i(2, "N"), i(3, "arr") })),
 
     s("map", fmt([[
 std::map<{}, {}> {};
-]], { i(1,"Key"), i(2,"Value"), i(3,"map") })),
+]], { i(1, "Key"), i(2, "Value"), i(3, "map") })),
 
     s("umap", fmt([[
 std::unordered_map<{}, {}> {};
-]], { i(1,"Key"), i(2,"Value"), i(3,"umap") })),
+]], { i(1, "Key"), i(2, "Value"), i(3, "umap") })),
 
     s("set", fmt([[
 std::set<{}> {};
-]], { i(1,"T"), i(2,"set") })),
+]], { i(1, "T"), i(2, "set") })),
 
     s("uset", fmt([[
 std::unordered_set<{}> {};
-]], { i(1,"T"), i(2,"uset") })),
+]], { i(1, "T"), i(2, "uset") })),
 
     s("deque", fmt([[
 std::deque<{}> {};
-]], { i(1,"T"), i(2,"dq") })),
+]], { i(1, "T"), i(2, "dq") })),
 
     s("queue", fmt([[
 std::queue<{}> {};
-]], { i(1,"T"), i(2,"q") })),
+]], { i(1, "T"), i(2, "q") })),
 
     s("stack", fmt([[
 std::stack<{}> {};
-]], { i(1,"T"), i(2,"st") })),
+]], { i(1, "T"), i(2, "st") })),
 
     s("span", fmt([[
 std::span<{}> {};
-]], { i(1,"T"), i(2,"sp") })),
+]], { i(1, "T"), i(2, "sp") })),
 
     -- =========================================================
     -- Functions / Classes
@@ -459,9 +459,9 @@ std::span<{}> {};
     {}
 }}
 ]], {
-        i(1,"void"),
-        i(2,"function_name"),
-        i(3,""),
+        i(1, "void"),
+        i(2, "function_name"),
+        i(3, ""),
         i(0)
     })),
 
@@ -470,9 +470,9 @@ auto {} = [{}]({}) {{
     {}
 }};
 ]], {
-        i(1,"fn"),
-        i(2,"&"),
-        i(3,""),
+        i(1, "fn"),
+        i(2, "&"),
+        i(3, ""),
         i(0)
     })),
 
@@ -480,7 +480,7 @@ auto {} = [{}]({}) {{
 struct {} {{
     {}
 }};
-]], { i(1,"Name"), i(0) })),
+]], { i(1, "Name"), i(0) })),
 
     s("class", fmt([[
 class {} {{
@@ -492,7 +492,7 @@ private:
     {}
 }};
 ]], {
-        i(1,"ClassName"),
+        i(1, "ClassName"),
         rep(1),
         rep(1),
         i(0)
@@ -508,7 +508,7 @@ private:
 {}({}&&) noexcept;
 {}& operator=({}&&) noexcept;
 ]], {
-        i(1,"Class"),
+        i(1, "Class"),
         rep(1),
         rep(1), rep(1),
         rep(1), rep(1),
@@ -524,7 +524,7 @@ private:
 if ({}) {{
     {}
 }}
-]], { i(1,"condition"), i(0) })),
+]], { i(1, "condition"), i(0) })),
 
     s("ife", fmt([[
 if ({}) {{
@@ -532,16 +532,16 @@ if ({}) {{
 }} else {{
     {}
 }}
-]], { i(1,"condition"), i(2), i(0) })),
+]], { i(1, "condition"), i(2), i(0) })),
 
     s("fori", fmt([[
 for (int {} = 0; {} < {}; ++{}) {{
     {}
 }}
 ]], {
-        i(1,"i"),
+        i(1, "i"),
         rep(1),
-        i(2,"N"),
+        i(2, "N"),
         rep(1),
         i(0)
     })),
@@ -551,8 +551,8 @@ for (auto& {} : {}) {{
     {}
 }}
 ]], {
-        i(1,"elem"),
-        i(2,"container"),
+        i(1, "elem"),
+        i(2, "container"),
         i(0)
     })),
 
@@ -576,10 +576,10 @@ try {{
 
     s("inc", fmt([[
 #include <{}>
-]], { i(1,"iostream") })),
+]], { i(1, "iostream") })),
 
     s("incc", fmt([[
 #include "{}"
-]], { i(1,"header.hpp") })),
+]], { i(1, "header.hpp") })),
 
 })
