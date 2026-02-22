@@ -19,7 +19,7 @@ return {
 				"regex",
 			}
 
-			require("nvim-treesitter").install(parsers)
+			pcall(require("nvim-treesitter").install, parsers)
 
 			vim.api.nvim_create_autocmd("FileType", {
 				callback = function(args)
