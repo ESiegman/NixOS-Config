@@ -3,6 +3,7 @@ local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
+local rep = require("luasnip.extras").rep
 local fmt = require("luasnip.extras.fmt").fmt
 
 ls.add_snippets("cpp", {
@@ -73,6 +74,17 @@ s("dbgcp", fmt([[
 #endif
 ]], {})),
 
+s("bench", fmt([[
+template<typename F>
+void benchmark(std::string_view name, F&& fn) {{
+    auto start = std::chrono::high_resolution_clock::now();
+    fn();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> diff = end - start;
+    std::cout << name << ": " << diff.count() << " s\n";
+}}
+]], {})),
+
 -- =========================================================
 -- Modern Templates / Meta
 -- =========================================================
@@ -86,7 +98,7 @@ template<typename {}>
     i(1, "T"),
     i(2, "void"),
     i(3, "func"),
-    i(1),
+    rep(1),
     i(4, "value"),
     i(0)
 })),
@@ -650,3 +662,4 @@ s("inc", fmt([[
 s("incc", fmt([[
 #include "{}"
 ]], { i(1,"header.hpp") })),
+})
