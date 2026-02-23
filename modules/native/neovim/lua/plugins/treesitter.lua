@@ -22,14 +22,18 @@ return {
 
 			pcall(require("nvim-treesitter").install, parsers)
 
-			vim.api.nvim_create_autocmd("FileType", {
-				callback = function(args)
-					local buf = args.buf
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = parsers,
 
-					pcall(vim.treesitter.start, buf)
+				auto_install = false,
 
-					vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-				end,
+				highlight = {
+					enable = true,
+				},
+
+				indent = {
+					enable = true,
+				},
 			})
 		end,
 	},
