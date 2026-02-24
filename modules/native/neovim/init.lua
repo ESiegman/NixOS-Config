@@ -44,4 +44,5 @@ lib.setup({
 	},
 })
 
+
 require("config.lazy")
