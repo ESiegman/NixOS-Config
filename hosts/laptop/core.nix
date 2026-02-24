@@ -1,6 +1,6 @@
 # hosts/laptop/core.nix
 {pkgs, ...}: let
-  wallpaper = ../../modules/assets/images/wallpaper2.jpg;
+  wallpaper = ../../modules/assets/images/wallpaper-laptop.jpg;
 in {
   stylix.image = wallpaper;
 
